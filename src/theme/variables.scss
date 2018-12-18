@@ -38,8 +38,20 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  transparent: rgba(0, 0, 0, 0),
 );
+
+// Colores
+$color-blue: #119bad;
+$color-white: white;
+
+@font-face {
+  font-family: "Circular STD";
+  src: url("../assets/fonts/CircularStd-Medium.otf");
+}
+
+$main-font: "Circular STD";
 
 
 // App iOS Variables

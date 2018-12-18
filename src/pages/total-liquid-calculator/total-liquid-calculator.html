@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar color="transparent">
+    <ion-title>Calculadora (Líquido)</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <section>
+    <h5>Cantidad de líquido (ml)</h5>
+    <input type="number" placeholder="mililitros" [(ngModel)]="liquidQuantity">
+  </section>
+
+  <section>
+      <h5>Base (%)</h5>
+      <ion-range min="0" max="100" pin="true" [(ngModel)]="baseProportion" color="secondary" class="base-proportion">
+          <h6 range-left>VG</h6>
+          <h6 range-right>PG</h6>
+      </ion-range>
+  </section>
+
+  <section>
+    <h5>Nicotina final (mg/ml)</h5>
+      <ion-item>
+          <ion-label>Nicotina total</ion-label>
+          <ion-select [(ngModel)]="totalNicotine" interface="popover">
+            <ion-option value="0">0 mg/ml</ion-option>
+            <ion-option value="3">3 mg/ml</ion-option>
+            <ion-option value="6">6 mg/ml</ion-option>
+            <ion-option value="12">12 mg/ml</ion-option>
+            <ion-option value="16">16 mg/ml</ion-option>
+            <ion-option value="24">24 mg/ml</ion-option>
+          </ion-select>
+        </ion-item>
+  </section>
+
+  <section>
+    <h5>Nicokits</h5>
+    <ion-item>
+        <ion-label>Concentración nicotina</ion-label>
+        <ion-select [(ngModel)]="nicokitConcentration" interface="popover">
+          <ion-option value="0">10 mg/ml</ion-option>
+          <ion-option value="3">20 mg/ml</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-range min="0" max="100" pin="true" [(ngModel)]="nicokitProportion" color="secondary" class="nicokit-proportion">
+          <h6 range-left>VG</h6>
+          <h6 range-right>PG</h6>
+      </ion-range>
+  </section>
+
+  <section class="flavours-section">
+    <h5>Aromas</h5>
+    <a class="btn-plain" (click)="addFlavour()">
+      <ion-icon margin-right name="add"></ion-icon>
+      Añadir aroma
+    </a>
+  </section>
+
+</ion-content>

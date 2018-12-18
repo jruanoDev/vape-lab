@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar color="transparent">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <h1>¿Cómo quieres calcular tu nuevo e-liquid?</h1>
+  <h5>A partir de...</h5>
+  <div class="calculator-buttons">
+    <button class="btn" (click)="openPage('totalLiquid')">Líquido total</button>
+    <button class="btn" (click)="openPage('totalFlavour')">Aroma total</button>
+  </div>
 </ion-content>

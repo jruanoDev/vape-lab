@@ -14,3 +14,44 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-header::after {
+    background-image: none !important;
+}
+
+ion-navbar {
+    ion-title {
+        font-family: "Circular STD";
+    }
+    ion-icon, .toolbar-title {
+        color: #222 !important;
+    }
+}
+
+h1, h5, button {
+    font-family: $main-font;
+}
+
+button.btn {
+    padding: 20px 25px 20px 25px;
+    border-radius: 100px;
+    font-size: 20px;
+    background: $color-blue;
+    color: $color-white;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
+}
+button.btn-small {
+    padding: 15px 20px 15px 20px;
+    border-radius: 100px;
+    font-size: 15px;
+    background: $color-blue;
+    color: $color-white;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
+    text-transform: uppercase;
+}
+a.btn-plain {
+    padding: 15px 20px 15px 0;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-family: $main-font;
+}
