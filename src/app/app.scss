@@ -28,7 +28,7 @@ ion-navbar {
     }
 }
 
-h1, h5, button {
+h1, h5, h6, button {
     font-family: $main-font;
 }
 
@@ -53,5 +53,15 @@ a.btn-plain {
     padding: 15px 20px 15px 0;
     font-size: 15px;
     text-transform: uppercase;
+    font-family: $main-font;
+}
+input {
+    width: 100%;
+    padding: 20px 15px 20px 15px;
+    border-radius: 100px;
+    border: none;
+    background: #119bad5d;
+    color: #222;
+    font-size: 20px;
     font-family: $main-font;
 }

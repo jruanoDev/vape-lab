@@ -50,11 +50,22 @@
   </section>
 
   <section class="flavours-section">
-    <h5>Aromas</h5>
-    <a class="btn-plain" (click)="addFlavour()">
-      <ion-icon margin-right name="add"></ion-icon>
-      Añadir aroma
-    </a>
+    <div class="flavours-section-header">
+      <h5>Aromas</h5>
+      <a class="btn-plain" (click)="onAddFlavourClick()">
+        <ion-icon margin-right name="add"></ion-icon>
+        Añadir aroma
+      </a>
+    </div>
+    <div *ngIf="flavours">
+      <ul *ngFor="let flavour of flavours">
+        <li>{{flavour.name}}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="!flavours">
+      <h6>No has añadido ningún aroma aún</h6>
+    </div>
   </section>
 
 </ion-content>

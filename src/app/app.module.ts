@@ -1,6 +1,7 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { AddFlavourModalPage } from '../pages/add-flavour-modal/add-flavour-modal';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomePage } from '../pages/home/home';
 import { MyApp } from './app.component';
@@ -12,7 +13,8 @@ import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/tota
   declarations: [
     MyApp,
     HomePage,
-    TotalLiquidCalculatorPage
+    TotalLiquidCalculatorPage,
+    AddFlavourModalPage
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/tota
   entryComponents: [
     MyApp,
     HomePage,
-    TotalLiquidCalculatorPage
+    TotalLiquidCalculatorPage,
+    AddFlavourModalPage
   ],
   providers: [
     StatusBar,

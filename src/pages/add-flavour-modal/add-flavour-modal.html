@@ -1,0 +1,24 @@
+<ion-content padding>
+  <div>
+    <ion-icon name="close"></ion-icon>
+  </div>
+
+  <h1>
+    Añade tu aroma
+  </h1>
+
+  <section>
+    <h5>Nombre</h5>
+    <input type="text" placeholder="nombre del aroma" [(ngModel)]="flavourName">
+  </section>
+
+  <section>
+      <h5>Marca (Opcional)</h5>
+      <input type="text" placeholder="marca del aroma" [(ngModel)]="flavourBrand">
+  </section>
+
+  <section>
+      <h5>Proporción (%)</h5>
+      <input type="number" placeholder="proporción del aroma" max=100 min=0 [(ngModel)]="flavourProportion">
+  </section>
+</ion-content>

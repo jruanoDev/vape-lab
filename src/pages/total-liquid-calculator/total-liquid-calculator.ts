@@ -1,12 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the TotalLiquidCalculatorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AddFlavourModalPage } from '../../pages/add-flavour-modal/add-flavour-modal';
+import { Component } from '@angular/core';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TotalLiquidCalculatorPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TotalLiquidCalculatorPage');
+  }
+
+  onAddFlavourClick() {
+    let modal =this.modalCtrl.create(AddFlavourModalPage);
+    modal.present();
   }
 
 }

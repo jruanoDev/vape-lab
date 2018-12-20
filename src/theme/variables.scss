@@ -45,10 +45,23 @@ $colors: (
 // Colores
 $color-blue: #119bad;
 $color-white: white;
+$color-grey: #979797;
 
 @font-face {
   font-family: "Circular STD";
   src: url("../assets/fonts/CircularStd-Medium.otf");
+}
+
+@font-face {
+  font-family: "Circular STD";
+  src: url("../assets/fonts/CircularStd-Bold.otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Circular STD';
+  src: url("../assets/fonts/CircularStd-Book.otf");
+  font-weight: 100;
 }
 
 $main-font: "Circular STD";

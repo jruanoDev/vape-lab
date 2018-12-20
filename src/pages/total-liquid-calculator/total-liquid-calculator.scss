@@ -11,31 +11,32 @@ page-total-liquid-calculator {
             padding-top: 0 !important;
         }
         input {
-            width: 100%;
-            padding: 20px 15px 20px 15px;
-            border-radius: 100px;
-            border: none;
-            background: #119bad5d;
-            color: #222;
-            font-size: 20px;
-            font-family: $main-font;
             text-align: center;
         }
         .nicokit-proportion {
             margin-top: 20px;
         }
         .flavours-section {
-            h5 {
-                float: left;
-            }
-            a {
-                float: right;
-                padding-top: 0;
+            .flavours-section-header {
+                display: inline-block;
+                width: 100%;
+                h5 {
+                    float: left;
+                }
+                a {
+                    float: right;
+                    padding-top: 0;
+                }
             }
             p {
                 display: block;
                 width: 100%;
             }
+            h6 {
+                font-weight: 100;
+                color: $color-grey;
+            }
+        
         }
     }
 }
