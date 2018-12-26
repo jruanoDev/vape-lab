@@ -65,3 +65,9 @@ input {
     font-size: 20px;
     font-family: $main-font;
 }
+.alert-wrapper {
+    border-radius: 20px !important;
+    .alert-title, .alert-message {
+        font-family: $main-font;
+    }
+}

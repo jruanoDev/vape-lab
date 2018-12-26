@@ -1,6 +1,6 @@
 <ion-content padding>
   <div>
-    <ion-icon name="close"></ion-icon>
+    <ion-icon name="close" (click)="closeModal()"></ion-icon>
   </div>
 
   <h1>
@@ -20,5 +20,9 @@
   <section>
       <h5>Proporción (%)</h5>
       <input type="number" placeholder="proporción del aroma" max=100 min=0 [(ngModel)]="flavourProportion">
+  </section>
+
+  <section>
+    <button class="btn-small" (click)="createFlavour()">Crear aroma</button>
   </section>
 </ion-content>

@@ -3,6 +3,7 @@ page-total-liquid-calculator {
         padding: 40px 30px 0 30px !important;
         section {
             margin-bottom: 30px;
+            transition: all .3s ease-in-out;
         }
         h5 {
             font-family: $main-font;
@@ -38,5 +39,10 @@ page-total-liquid-calculator {
             }
         
         }
+    }
+    .disabled {
+        opacity: .3;
+        pointer-events: none;
+        transition: opacity .3s ease-in-out;
     }
 }

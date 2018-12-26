@@ -21,25 +21,25 @@
   <section>
     <h5>Nicotina final (mg/ml)</h5>
       <ion-item>
-          <ion-label>Nicotina total</ion-label>
-          <ion-select [(ngModel)]="totalNicotine" interface="popover">
-            <ion-option value="0">0 mg/ml</ion-option>
-            <ion-option value="3">3 mg/ml</ion-option>
-            <ion-option value="6">6 mg/ml</ion-option>
-            <ion-option value="12">12 mg/ml</ion-option>
-            <ion-option value="16">16 mg/ml</ion-option>
-            <ion-option value="24">24 mg/ml</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-label>Nicotina total</ion-label>
+        <ion-select [(ngModel)]="totalNicotine" interface="popover">
+          <ion-option value="0">Sin nicotina</ion-option>
+          <ion-option value="3">3 mg/ml</ion-option>
+          <ion-option value="6">6 mg/ml</ion-option>
+          <ion-option value="12">12 mg/ml</ion-option>
+          <ion-option value="16">16 mg/ml</ion-option>
+          <ion-option value="24">24 mg/ml</ion-option>
+        </ion-select>
+      </ion-item>
   </section>
 
-  <section>
+  <section [ngClass]="{'disabled': totalNicotine === '0'}">
     <h5>Nicokits</h5>
     <ion-item>
         <ion-label>Concentración nicotina</ion-label>
         <ion-select [(ngModel)]="nicokitConcentration" interface="popover">
-          <ion-option value="0">10 mg/ml</ion-option>
-          <ion-option value="3">20 mg/ml</ion-option>
+          <ion-option value="10">10 mg/ml</ion-option>
+          <ion-option value="20">20 mg/ml</ion-option>
         </ion-select>
       </ion-item>
 
@@ -57,15 +57,19 @@
         Añadir aroma
       </a>
     </div>
-    <div *ngIf="flavours">
+    <div *ngIf="flavours?.length > 0">
       <ul *ngFor="let flavour of flavours">
         <li>{{flavour.name}}</li>
       </ul>
     </div>
 
-    <div *ngIf="!flavours">
+    <div *ngIf="flavours?.length <= 0">
       <h6>No has añadido ningún aroma aún</h6>
     </div>
+  </section>
+
+  <section>
+    <button class="btn-small" (click)="calculateLiquid()">Calcular</button>
   </section>
 
 </ion-content>
