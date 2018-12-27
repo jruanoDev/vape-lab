@@ -59,7 +59,15 @@
     </div>
     <div *ngIf="flavours?.length > 0">
       <ul *ngFor="let flavour of flavours">
-        <li>{{flavour.name}}</li>
+        <li>
+          <div>
+            <h5>{{flavour.name}}</h5>
+            <h6>{{flavour.brand}} - {{flavour.proportion}} %</h6>
+          </div>
+          <button (click)="deleteFlavourFromCalc(flavour)">
+            <ion-icon name="close-circle"></ion-icon>
+          </button>
+        </li>
       </ul>
     </div>
 
@@ -69,7 +77,12 @@
   </section>
 
   <section>
-    <button class="btn-small" (click)="calculateLiquid()">Calcular</button>
+    <ion-checkbox color="primary" [(ngModel)]="saveToRecipeList"></ion-checkbox>
+    <h6>Guardar en mi lista de líquidos</h6>
+  </section>
+
+  <section>
+    <button class="btn-small" (click)="openResultsModal()">Calcular</button>
   </section>
 
 </ion-content>

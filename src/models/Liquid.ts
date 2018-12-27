@@ -8,5 +8,6 @@ export class Liquid {
     nicokitConcentration:number;
     nicokitVG:number;
     nicokitPG:number;
-    flavours:Array<Flavour>
+    flavours:Array<Flavour>;
+    name:string;
 }

@@ -7,15 +7,23 @@ page-add-flavour-modal {
         }
     }
     h1 {
-        margin-top: 50px;
+        margin-top: 40px;
     }
     section {
         margin-top: 25px;
         &:first-of-type {
-            margin-top: 50px;
+            margin-top: 37px;
         }
         &:last-of-type {
             margin-top: 30px;
+        }
+        ion-checkbox {
+            margin-right: 10px;
+            vertical-align: text-top;
+        }
+        h6 {
+            margin: 0;
+            display: inline-block;
         }
     }
     input {

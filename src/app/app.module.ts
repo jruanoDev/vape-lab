@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AddFlavourModalPage } from '../pages/add-flavour-modal/add-flavour-modal';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomePage } from '../pages/home/home';
+import { LiquidsResultModalPage } from '../pages/liquids-result-modal/liquids-result-modal';
 import { MyApp } from './app.component';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,7 +15,8 @@ import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/tota
     MyApp,
     HomePage,
     TotalLiquidCalculatorPage,
-    AddFlavourModalPage
+    AddFlavourModalPage,
+    LiquidsResultModalPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/tota
     MyApp,
     HomePage,
     TotalLiquidCalculatorPage,
-    AddFlavourModalPage
+    AddFlavourModalPage,
+    LiquidsResultModalPage
   ],
   providers: [
     StatusBar,

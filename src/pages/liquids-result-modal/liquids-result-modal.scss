@@ -1,0 +1,71 @@
+page-liquids-result-modal {
+    .scroll-content {
+        h5 {
+            font-size: 25px;
+        }
+        h1.modal-title {
+            max-width: 80%;
+            text-align: center;
+            margin: 40px auto 0 auto !important;
+        }
+        section {
+            padding: 30px;
+            &:last-of-type {
+                text-align: center;
+                button {
+                    background: transparent;
+                    ion-icon {
+                        font-size: 34px;
+                    }
+                }
+            }
+            h6 {
+                margin-bottom: 0;
+            }
+            h1.super {
+                margin: 0;
+                font-size: 50px;
+                font-weight: 900;
+                position: relative;
+                &::after {
+                    content: '';
+                    width: 80%;
+                    height: 4px;
+                    background: $color-grey;
+                    display: inline-block;
+                    position: absolute;
+                    bottom: -9px;
+                    left: 59px;
+                }
+            }
+            .base-quantity {
+                text-align: right;
+                &:first-of-type {
+                    margin-top: 25px;
+                }
+                h5, h6 {
+                    display: inline-block;
+                }
+                h6 {
+                    margin-right: 10px;
+                }
+                h5 {
+                    margin: 0;
+                }
+            }
+            .flavour-quantity {
+                list-style: none;
+                padding-left: 0;
+                li {
+                    text-align: right;
+                    h5, h6 {
+                        display: inline-block;
+                    }
+                    h5 {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
