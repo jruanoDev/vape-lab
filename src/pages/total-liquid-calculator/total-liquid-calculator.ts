@@ -1,4 +1,4 @@
-import { AlertController, IonicPage, Modal, ModalController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 
 import { AddFlavourModalPage } from '../../pages/add-flavour-modal/add-flavour-modal';
 import { Component } from '@angular/core';
@@ -12,6 +12,9 @@ import { LiquidsResultModalPage } from '../liquids-result-modal/liquids-result-m
   templateUrl: 'total-liquid-calculator.html',
 })
 export class TotalLiquidCalculatorPage {
+  liquid:Liquid = new Liquid();
+
+  // Data Binding variables
   liquidQuantity:string;
   baseProportion:number = 50;
   totalNicotine:string = "0";
@@ -19,6 +22,15 @@ export class TotalLiquidCalculatorPage {
   nicokitProportion:number = 50;
   flavours:Array<Flavour> = [];
   saveToRecipeList:boolean = false;
+
+  // Calculator variables
+  nicotineMl:number = 0;
+  mlFlavourList:Array<Object> = [];
+  flavourTotalPercentage:number = 0;
+  totalBase:number = 0;
+  totalBasePG:number = 0;
+  totalBaseVG:number = 0;
+  nicotineInLiquid:boolean = true;
 
   constructor(
     public navCtrl: NavController,
@@ -37,27 +49,77 @@ export class TotalLiquidCalculatorPage {
   }
   
   openResultsModal() {
-    if(this.checkForErrors()) {
-      let liquid = new Liquid();
-    
-      liquid.name = "";
-      liquid.baseVG = this.baseProportion;
-      liquid.basePG = 100 - this.baseProportion;
-      liquid.totalNicotine = parseInt(this.totalNicotine);
-      liquid.nicokitConcentration = parseInt(this.nicokitConcentration);
-      liquid.nicokitPG = 100 - this.nicokitProportion;
-      liquid.nicokitVG = this.nicokitProportion;
-      liquid.flavours = this.flavours;
-      liquid.totalQuantity = parseInt(this.liquidQuantity);
+    let resultsModal = this.modalCtrl.create(LiquidsResultModalPage, {
+      liquid: this.liquid,
+      nicotineMl: this.nicotineMl,
+      mlFlavourList: this.mlFlavourList,
+      flavourTotalPercentage: this.flavourTotalPercentage,
+      totalBase: this.totalBase,
+      totalBasePG: this.totalBasePG,
+      totalBaseVG: this.totalBaseVG,
+      nicotineInLiquid: this.nicotineInLiquid,
+    });
+    resultsModal.present();
+  }
+
+  createLiquid() {
+    if(this.checkForErrors()) {    
+      this.liquid.name = "";
+      this.liquid.baseVG = this.baseProportion;
+      this.liquid.basePG = 100 - this.baseProportion;
+      this.liquid.totalNicotine = parseInt(this.totalNicotine);
+      this.liquid.nicokitConcentration = parseInt(this.nicokitConcentration);
+      this.liquid.nicokitPG = 100 - this.nicokitProportion;
+      this.liquid.nicokitVG = this.nicokitProportion;
+      this.liquid.flavours = this.flavours;
+      this.liquid.totalQuantity = parseInt(this.liquidQuantity);
 
       if(this.saveToRecipeList) {
         // Lógica para guardar en BD
       }
+    }
+    this.calculateQuantities();
+  }
 
-      let resultsModal = this.modalCtrl.create(LiquidsResultModalPage, {
-        liquid: liquid
+  calculateQuantities() {
+    let totalFlavourMl = 0;
+    this.mlFlavourList = [];
+    this.flavourTotalPercentage = 0;
+
+    if(this.liquid.totalNicotine == 0)
+      this.nicotineInLiquid = false;
+
+    this.nicotineMl = (this.liquid.totalNicotine * this.liquid.totalQuantity) 
+      / this.liquid.nicokitConcentration;
+    
+    this.liquid.flavours.forEach((flavour) => {
+      this.flavourTotalPercentage += flavour.proportion;
+
+      let flavourMl = flavour.proportion * this.liquid.totalQuantity / 100;
+      totalFlavourMl += flavourMl;
+
+      this.mlFlavourList.push({
+        flavour: flavour,
+        quantity: flavourMl
       });
-      resultsModal.present();
+    });
+
+    this.totalBase = this.roundTwoDecimals(this.liquid.totalQuantity - this.nicotineMl - totalFlavourMl);
+    this.totalBasePG = this.roundTwoDecimals((this.liquid.basePG * this.totalBase) / 100);
+    this.totalBaseVG = this.roundTwoDecimals((this.liquid.baseVG * this.totalBase) / 100);
+
+    let totalCalc = this.nicotineMl + totalFlavourMl;
+
+    if(this.liquid.totalQuantity < totalCalc) {  
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        message: 'Demasiados aromas para la cantidad de líquido total especificado',
+        buttons: ['OK']
+      });
+
+      alert.present();
+    } else {
+      this.openResultsModal();
     }
   }
   
@@ -94,5 +156,9 @@ export class TotalLiquidCalculatorPage {
   deleteFlavourFromCalc(flavour:Flavour) {
     let index = this.flavours.indexOf(flavour);
     this.flavours.splice(index, 1);
+  }
+
+  roundTwoDecimals(number) {
+    return Math.round(number * 100) / 100;
   }
 }

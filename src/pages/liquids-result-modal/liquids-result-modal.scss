@@ -56,13 +56,14 @@ page-liquids-result-modal {
             .flavour-quantity {
                 list-style: none;
                 padding-left: 0;
+                margin-top: 20px;
                 li {
                     text-align: right;
                     h5, h6 {
                         display: inline-block;
                     }
                     h5 {
-                        margin-left: 10px;
+                        margin: 0 0 0 10px;
                     }
                 }
             }

@@ -30,8 +30,8 @@
     <h6>Aromas</h6>
     <h1 class="super">{{flavourTotalPercentage}}% total</h1>
 
-    <ul class="flavour-quantity" *ngFor="let item of mlFlavourList">
-      <li>
+    <ul class="flavour-quantity">
+      <li *ngFor="let item of mlFlavourList">
         <h6>{{item.flavour.name}}</h6>
         <h5>{{item.quantity}} ml</h5>
       </li>

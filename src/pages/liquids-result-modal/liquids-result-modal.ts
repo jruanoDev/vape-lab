@@ -22,36 +22,14 @@ export class LiquidsResultModalPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl:ViewController) {
+      this.nicotineMl = navParams.get("nicotineMl");
+      this.mlFlavourList = navParams.get("mlFlavourList");
+      this.flavourTotalPercentage = navParams.get("flavourTotalPercentage");
+      this.totalBase = navParams.get("totalBase");
+      this.totalBasePG = navParams.get("totalBasePG");
+      this.totalBaseVG = navParams.get("totalBaseVG");
+      this.nicotineInLiquid = navParams.get("nicotineInLiquid");      
       this.liquid = navParams.get("liquid");
-  }
-
-  ionViewDidLoad() {
-    this.calculateELiquid();
-  }
-
-  calculateELiquid() {
-    if(this.liquid.totalNicotine == 0)
-      this.nicotineInLiquid = false;
-
-    let totalFlavourMl = 0;
-
-    this.nicotineMl = (this.liquid.totalNicotine * this.liquid.totalQuantity) / this.liquid.nicokitConcentration;
-    
-    this.liquid.flavours.forEach((flavour) => {
-      this.flavourTotalPercentage += flavour.proportion;
-
-      let flavourMl = flavour.proportion * this.liquid.totalQuantity / 100;
-      totalFlavourMl += flavourMl;
-
-      this.mlFlavourList.push({
-        flavour: flavour,
-        quantity: flavourMl
-      });
-    });
-
-    this.totalBase = this.liquid.totalQuantity - this.nicotineMl - totalFlavourMl;
-    this.totalBasePG = (this.liquid.basePG * this.totalBase) / 100;
-    this.totalBaseVG = (this.liquid.baseVG * this.totalBase) / 100;
   }
 
   closeModal() {
