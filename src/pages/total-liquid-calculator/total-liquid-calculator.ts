@@ -4,6 +4,7 @@ import { AddFlavourModalPage } from '../../pages/add-flavour-modal/add-flavour-m
 import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
+import { LiquidProvider } from '../../providers/liquid/liquid';
 import { LiquidsResultModalPage } from '../liquids-result-modal/liquids-result-modal';
 
 @IonicPage()
@@ -36,7 +37,8 @@ export class TotalLiquidCalculatorPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    public alertCtrl: AlertController) {}
+    public alertCtrl: AlertController,
+    private liquidProvider: LiquidProvider) {}
 
   onAddFlavourClick() {
     let modal =this.modalCtrl.create(AddFlavourModalPage);
@@ -75,10 +77,29 @@ export class TotalLiquidCalculatorPage {
       this.liquid.totalQuantity = parseInt(this.liquidQuantity);
 
       if(this.saveToRecipeList) {
-        // Lógica para guardar en BD
+        let nameAlert = this.alertCtrl.create({
+          title: 'Una última cosa',
+          message: 'Introduce un nombre para guardar la receta',
+          inputs: [
+            {
+              name: 'nombre',
+              placeholder: 'Nombre'
+            }
+          ],
+          buttons: [{
+            text: 'Guardar',
+            handler: data => {
+              this.liquid.name = data.nombre;
+              this.liquidProvider.saveLiquid(this.liquid);
+              this.calculateQuantities();
+            }
+          }]
+        });
+        nameAlert.present();
+      } else {
+        this.calculateQuantities();
       }
     }
-    this.calculateQuantities();
   }
 
   calculateQuantities() {

@@ -2,6 +2,8 @@ import { AlertController, IonicPage, NavController, NavParams, ViewController } 
 
 import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
+import { FlavourProvider } from '../../providers/flavour/flavour';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -12,12 +14,13 @@ export class AddFlavourModalPage {
   flavourName:string = "";
   flavourBrand:string = "";
   flavourProportion:number;
-  saveToList:boolean = true;
+  saveToList:boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public viewCtrl:ViewController,
-              public alertCtrl:AlertController) {}
+              public viewCtrl: ViewController,
+              public alertCtrl: AlertController,
+              private flavourProvider: FlavourProvider) {}
 
   createFlavour() {
     if(this.checkForErrors()) {
@@ -31,7 +34,7 @@ export class AddFlavourModalPage {
         flavour.brand = "Sin marca";
 
       if(this.saveToList) {
-        //Lógica para guardar aroma en BD
+        this.flavourProvider.saveFlavour(flavour);
       }
       
       this.viewCtrl.dismiss(flavour);
