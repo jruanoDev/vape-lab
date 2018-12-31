@@ -3,24 +3,21 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AddFlavourModalPage } from '../pages/add-flavour-modal/add-flavour-modal';
 import { BrowserModule } from '@angular/platform-browser';
+import { FlavourProvider } from '../providers/flavour/flavour';
 import { HomePage } from '../pages/home/home';
 import { IonicStorageModule } from '@ionic/storage';
+import { LiquidProvider } from '../providers/liquid/liquid';
 import { LiquidsResultModalPage } from '../pages/liquids-result-modal/liquids-result-modal';
 import { MyApp } from './app.component';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/total-liquid-calculator';
 import { StorageProvider } from '../providers/storage/storage';
-import { FlavourProvider } from '../providers/flavour/flavour';
-import { LiquidProvider } from '../providers/liquid/liquid';
+import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/total-liquid-calculator';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    TotalLiquidCalculatorPage,
-    AddFlavourModalPage,
-    LiquidsResultModalPage
   ],
   imports: [
     BrowserModule,
@@ -34,9 +31,6 @@ import { LiquidProvider } from '../providers/liquid/liquid';
   entryComponents: [
     MyApp,
     HomePage,
-    TotalLiquidCalculatorPage,
-    AddFlavourModalPage,
-    LiquidsResultModalPage
   ],
   providers: [
     StatusBar,

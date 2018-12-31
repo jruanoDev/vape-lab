@@ -1,11 +1,9 @@
 import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 
-import { AddFlavourModalPage } from '../../pages/add-flavour-modal/add-flavour-modal';
 import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
 import { LiquidProvider } from '../../providers/liquid/liquid';
-import { LiquidsResultModalPage } from '../liquids-result-modal/liquids-result-modal';
 
 @IonicPage()
 @Component({
@@ -41,7 +39,7 @@ export class TotalLiquidCalculatorPage {
     private liquidProvider: LiquidProvider) {}
 
   onAddFlavourClick() {
-    let modal =this.modalCtrl.create(AddFlavourModalPage);
+    let modal =this.modalCtrl.create("AddFlavourModalPage");
     modal.present();
 
     modal.onDidDismiss((flavour:Flavour) => {
@@ -51,7 +49,7 @@ export class TotalLiquidCalculatorPage {
   }
   
   openResultsModal() {
-    let resultsModal = this.modalCtrl.create(LiquidsResultModalPage, {
+    let resultsModal = this.modalCtrl.create("LiquidsResultModalPage", {
       liquid: this.liquid,
       nicotineMl: this.nicotineMl,
       mlFlavourList: this.mlFlavourList,

@@ -3,7 +3,6 @@ import { AlertController, IonicPage, NavController, NavParams, ViewController } 
 import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
 import { FlavourProvider } from '../../providers/flavour/flavour';
-import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
