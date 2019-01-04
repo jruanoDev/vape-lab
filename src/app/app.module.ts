@@ -1,18 +1,17 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { AddFlavourModalPage } from '../pages/add-flavour-modal/add-flavour-modal';
 import { BrowserModule } from '@angular/platform-browser';
+import { ElasticHeaderModule } from 'ionic2-elastic-header/dist';
 import { FlavourProvider } from '../providers/flavour/flavour';
 import { HomePage } from '../pages/home/home';
 import { IonicStorageModule } from '@ionic/storage';
 import { LiquidProvider } from '../providers/liquid/liquid';
-import { LiquidsResultModalPage } from '../pages/liquids-result-modal/liquids-result-modal';
 import { MyApp } from './app.component';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { StorageProvider } from '../providers/storage/storage';
-import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/total-liquid-calculator';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,8 @@ import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/tota
     IonicStorageModule.forRoot({
       name: 'vapeBookDB',
       driverOrder: ['sqlite', 'indexeddb', 'websql']
-    })
+    }),
+    ElasticHeaderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +38,8 @@ import { TotalLiquidCalculatorPage } from '../pages/total-liquid-calculator/tota
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StorageProvider,
     FlavourProvider,
-    LiquidProvider
+    LiquidProvider,
+    NativePageTransitions
   ]
 })
 export class AppModule {}

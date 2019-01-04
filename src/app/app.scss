@@ -38,7 +38,8 @@ button.btn {
     font-size: 20px;
     background: $color-blue;
     color: $color-white;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .15);
+    transition: all .1s ease-in-out;
 }
 button.btn-small {
     padding: 15px 20px 15px 20px;
@@ -48,22 +49,42 @@ button.btn-small {
     color: $color-white;
     box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
     text-transform: uppercase;
+    transition: all .1s ease-in-out;
 }
+
+.btn, .btn-small {
+    &:active {
+        transform: scale(0.97);
+        transition: all .1s ease-in-out;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+        background: $color-blue-pressed;
+    }
+}
+
 a.btn-plain {
     padding: 15px 20px 15px 0;
     font-size: 15px;
     text-transform: uppercase;
     font-family: $main-font;
+    color: $color-blue;
 }
 input, .alert-input {
     width: 100%;
     padding: 20px 15px 20px 15px;
     border-radius: 100px;
-    border: none;
+    border: 2px solid #a8dbe1;
     background-color: #a8dbe1;
     color: #222;
     font-size: 20px;
     font-family: $main-font;
+    transition: border .3s ease-in-out;
+    &::placeholder {
+        color: $color-placeholder;
+    }
+    &:focus {
+        border: 2px solid $color-blue;
+        transition: border .3s ease-in-out;
+    }
 }
 .alert-wrapper {
     border-radius: 20px !important;
@@ -83,4 +104,7 @@ input, .alert-input {
             }
         }
     }
+}
+.range-knob, .range-bar-active, .range-pin, .range-pin::before {
+    background: $color-blue !important;
 }
