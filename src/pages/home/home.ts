@@ -15,11 +15,9 @@ export class HomePage {
 
   options: NativeTransitionOptions = {
     direction: 'left',
-    duration: 500,
-    slowdownfactor: 3,
-    slidePixels: 20,
-    iosdelay: 100,
-    androiddelay: 150
+    duration: 300,
+    slowdownfactor: -1,
+    androiddelay: 1150
   };
 
   ionViewDidLoad() {

@@ -40,6 +40,7 @@ button.btn {
     color: $color-white;
     box-shadow: 0 3px 3px rgba(0, 0, 0, .15);
     transition: all .1s ease-in-out;
+    touch-action: manipulation;
 }
 button.btn-small {
     padding: 15px 20px 15px 20px;
@@ -51,7 +52,6 @@ button.btn-small {
     text-transform: uppercase;
     transition: all .1s ease-in-out;
 }
-
 .btn, .btn-small {
     &:active {
         transform: scale(0.97);
@@ -60,7 +60,6 @@ button.btn-small {
         background: $color-blue-pressed;
     }
 }
-
 a.btn-plain {
     padding: 15px 20px 15px 0;
     font-size: 15px;

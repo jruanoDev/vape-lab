@@ -1,4 +1,5 @@
 import { AlertController, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
@@ -19,7 +20,17 @@ export class AddFlavourModalPage {
               public navParams: NavParams,
               public viewCtrl: ViewController,
               public alertCtrl: AlertController,
-              private flavourProvider: FlavourProvider) {}
+              private flavourProvider: FlavourProvider,
+              private nativeTransitions: NativePageTransitions) {}
+
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+      direction: 'down',
+      duration: 250
+    };
+
+    this.nativeTransitions.slide(options);
+  }
 
   createFlavour() {
     if(this.checkForErrors()) {
@@ -31,6 +42,9 @@ export class AddFlavourModalPage {
 
       if(flavour.brand == "")
         flavour.brand = "Sin marca";
+
+      if(flavour.name == "")
+        flavour.name = "Sin nombre";
 
       if(this.saveToList) {
         this.flavourProvider.saveFlavour(flavour);
@@ -53,14 +67,16 @@ export class AddFlavourModalPage {
       buttons: ['OK']
     });
     
-    if(this.flavourName.length < 1) {
-      message += '<li>Debes añadir un nombre al aroma</li>';
-      errorAlert.setMessage(message);
-      errorAlert.present();
-      
-      result = false;
+    if(this.saveToList) {
+      if(this.flavourName.length < 1) {
+        message += '<li>Debes añadir un nombre al aroma</li>';
+        errorAlert.setMessage(message);
+        errorAlert.present();
+        
+        result = false;
+      }
     }
-    
+
     if(isNaN(this.flavourProportion) || this.flavourProportion == undefined || 
        this.flavourProportion <= 0.1 || this.flavourProportion > 55) {
 

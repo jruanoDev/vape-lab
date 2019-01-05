@@ -2,7 +2,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { ElasticHeaderModule } from 'ionic2-elastic-header/dist';
 import { FlavourProvider } from '../providers/flavour/flavour';
 import { HomePage } from '../pages/home/home';
 import { IonicStorageModule } from '@ionic/storage';
@@ -24,8 +23,7 @@ import { StorageProvider } from '../providers/storage/storage';
     IonicStorageModule.forRoot({
       name: 'vapeBookDB',
       driverOrder: ['sqlite', 'indexeddb', 'websql']
-    }),
-    ElasticHeaderModule
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

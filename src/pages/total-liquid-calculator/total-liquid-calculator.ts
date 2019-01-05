@@ -1,4 +1,5 @@
 import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
@@ -36,10 +37,27 @@ export class TotalLiquidCalculatorPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
-    private liquidProvider: LiquidProvider) {}
+    private liquidProvider: LiquidProvider,
+    private nativeTransitions: NativePageTransitions) {}
+
+  ionViewWillLeave() {
+    let options: NativeTransitionOptions = {
+      direction: 'right',
+      duration: 300
+    };
+
+    this.nativeTransitions.slide(options);
+  }
 
   onAddFlavourClick() {
     let modal =this.modalCtrl.create("AddFlavourModalPage");
+
+    let options: NativeTransitionOptions = {
+      direction: 'up',
+      duration: 250
+    };
+    
+    this.nativeTransitions.slide(options);
     modal.present();
 
     modal.onDidDismiss((flavour:Flavour) => {
