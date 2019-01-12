@@ -9,7 +9,6 @@ export class StorageProvider {
   checkFirstLaunch() {
     this.storage.get('firstLaunch')
       .then((data) => {
-        console.log("FIRST LAUNCH ", data);
         if(!data) {
           this.storage.clear()
             .then(() => {

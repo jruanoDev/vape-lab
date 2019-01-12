@@ -19,6 +19,60 @@ ion-header::after {
     background-image: none !important;
 }
 
+ion-menu {
+    ion-title {
+        padding-left: 33px;
+        margin-top: 24px;
+        .toolbar-title {
+            font-size: 30px;
+            color: rgba(0, 0, 0, .6);
+            font-weight: 500;
+            font-family: $main-font;
+            b {
+                color: $color-blue;
+            }
+        }
+    }
+    ion-content {
+        top: 30px;
+        .scroll-content {
+            padding-right: 20px;
+            button {
+                padding-left: 0 !important;
+                border-bottom-right-radius: 100px;
+                border-top-right-radius: 100px;
+                padding-right: 20px;
+                margin: 10px 0;
+                .item-inner {
+                    border-bottom: none !important;
+                    ion-label {
+                        display: flex;
+                        max-height: 50px;
+                        align-items: center;
+                        padding-left: 25px;
+                        font-size: 18px;
+                        color: rgb(82, 82, 82);
+                        font-weight: 900;
+                        img {
+                            width: 20px;
+                            margin-right: 25px;
+                        }
+                    }
+                }
+                .button-effect {
+                    background: $color-blue;
+                }
+            }
+            button.active {
+                background-color: $color-blue-active-menu !important;
+                .item-inner ion-label {
+                    color: #222;
+                }
+            }
+        }
+    }
+}
+
 ion-navbar {
     ion-title {
         font-family: "Circular STD";

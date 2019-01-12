@@ -1,5 +1,5 @@
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FlavourProvider } from '../providers/flavour/flavour';
@@ -37,7 +37,7 @@ import { StorageProvider } from '../providers/storage/storage';
     StorageProvider,
     FlavourProvider,
     LiquidProvider,
-    NativePageTransitions
+    NativePageTransitions,
   ]
 })
 export class AppModule {}

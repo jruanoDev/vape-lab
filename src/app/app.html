@@ -1,13 +1,27 @@
 <ion-menu [content]="content" persistent>
     <ion-header>
-        <ion-toolbar color="primary">
-            <ion-title>Menú</ion-title>
-        </ion-toolbar>
+        <ion-title>Vape<b>Lab</b></ion-title>
     </ion-header>
 
     <ion-content>
-        <button menuClose ion-item>
-            Lista
+        <button menuClose ion-item class="active menu-button" (click)="openPage($event, 'HomePage')">
+            <img src="assets/imgs/calculator.png">
+            Calculadora
+        </button>
+
+        <button menuClose ion-item class="menu-button" (click)="openPage($event, 'LiquidListPage')">
+            <img src="assets/imgs/liquid.png">
+            Líquidos
+        </button>
+
+        <button menuClose ion-item class="menu-button" (click)="openPage($event, 'FlavourListPage')">
+            <img src="assets/imgs/flavour.png">
+            Aromas
+        </button>
+
+        <button menuClose ion-item class="menu-button" (click)="openPage($event, 'InformationPage')">
+            <img src="assets/imgs/info.png">
+            Información
         </button>
     </ion-content>
 </ion-menu>

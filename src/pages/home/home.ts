@@ -16,8 +16,7 @@ export class HomePage {
   options: NativeTransitionOptions = {
     direction: 'left',
     duration: 300,
-    slowdownfactor: -1,
-    androiddelay: 1150
+    slowdownfactor: -1
   };
 
   ionViewDidLoad() {
