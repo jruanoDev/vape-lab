@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { Component } from '@angular/core';
 
 /**
  * Generated class for the InformationPage page.
@@ -19,7 +20,6 @@ export class InformationPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InformationPage');
   }
 
 }

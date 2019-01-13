@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, ViewController } from 'ionic-angular';
+import { Observable, merge } from 'rxjs';
 
 import { HomePage } from '../pages/home/home';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,32 +20,51 @@ export class MyApp {
         statusBar.styleDefault();
         statusBar.backgroundColorByHexString('#ffffff');
         splashScreen.hide();
+
+        let navigationEvents = Observable.merge(
+          this.nav.viewDidEnter, 
+          this.nav.viewDidLeave
+        );
+
+        /* MEJORAR ESTO, ES EL MÉTODO CORRECTO PERO HAY QUE IMPLEMENTARLO BIEN */
+
+        navigationEvents.subscribe((view: ViewController) => {
+          console.log(view.name);
+        });
     });
   }
 
-  openPage(event, page) {
-    this.changeMenuSelection(event);
-
-    /* FALLA AL COMPARAR LA PANTALLA ACTIVA Y
-       AL ELIMINAR LA PANTALLA ANTERIOR */
-
+  openPage(page) {
     if(this.nav.getActive().name != page) {
       if(page == 'HomePage') {
-        this.nav.push(HomePage);
+        this.nav.push(HomePage).then(() => {
+          this.changeMenuSelection();
+        });
       } else {
-        this.nav.push(page);
-        console.log(this.nav.getPrevious().name);
+        this.nav.push(page).then(() => {
+          this.changeMenuSelection();
+          this.removePreviousView();
+        });
       }
     }
   }
 
-  changeMenuSelection(event) {
+  removePreviousView() {
+    let previousPage = this.nav.getPrevious(this.nav.getActive());
+    if(this.nav.getPrevious() != null && previousPage.name != 'HomePage')
+      previousPage.dismiss();
+  }
+
+  changeMenuSelection() {
     let menuElements = document.querySelectorAll('.menu-button');
+    let activePage = this.nav.getActive().name;
+
     [].forEach.call(menuElements, function(element) {
       element.classList.remove('active');
-    });
 
-    event.path[2].classList.add('active');
+      if(element.getAttribute('data-page') == activePage)
+        element.classList.add('active');
+    });
   }
 }
 

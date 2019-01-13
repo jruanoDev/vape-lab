@@ -4,22 +4,22 @@
     </ion-header>
 
     <ion-content>
-        <button menuClose ion-item class="active menu-button" (click)="openPage($event, 'HomePage')">
+        <button menuClose ion-item class="active menu-button" data-page="HomePage" (click)="openPage('HomePage')">
             <img src="assets/imgs/calculator.png">
             Calculadora
         </button>
 
-        <button menuClose ion-item class="menu-button" (click)="openPage($event, 'LiquidListPage')">
+        <button menuClose ion-item class="menu-button" data-page="LiquidListPage" (click)="openPage('LiquidListPage')">
             <img src="assets/imgs/liquid.png">
             Líquidos
         </button>
 
-        <button menuClose ion-item class="menu-button" (click)="openPage($event, 'FlavourListPage')">
+        <button menuClose ion-item class="menu-button" data-page="FlavourListPage" (click)="openPage('FlavourListPage')">
             <img src="assets/imgs/flavour.png">
             Aromas
         </button>
 
-        <button menuClose ion-item class="menu-button" (click)="openPage($event, 'InformationPage')">
+        <button menuClose ion-item class="menu-button" data-page="InformationPage" (click)="openPage('InformationPage')">
             <img src="assets/imgs/info.png">
             Información
         </button>
