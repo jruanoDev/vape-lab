@@ -16,4 +16,24 @@ export class LiquidProvider {
         this.storage.set('liquids', liquids);
       });
   }
+
+  getAllLiquids() {
+    return this.storage.get('liquids');
+  }
+
+  deleteLiquid(liquid) {
+    let liquids = [];
+    let index;
+
+    this.storage.get('liquids')
+    .then((data) => {
+      liquids = data;
+      index = data.map((liquid) => { return liquid.name }).indexOf(liquid.name);
+      
+      liquids.splice(index, 1);
+      this.storage.set('liquids', liquids);
+    });
+
+    
+  }
 }

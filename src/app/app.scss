@@ -37,6 +37,13 @@ ion-menu {
         top: 30px;
         .scroll-content {
             padding-right: 20px;
+            h6 {
+                padding-left: 25px;
+                margin-top: 40px;
+                font-size: 15px;
+                color: $color-placeholder;
+                font-weight: 100;
+            }
             button {
                 padding-left: 0 !important;
                 border-bottom-right-radius: 100px;
@@ -84,6 +91,12 @@ ion-navbar {
 
 h1, h5, h6, button {
     font-family: $main-font;
+}
+
+h1.page-title {
+    font-size: 35px;
+    font-weight: 600;
+    margin-left: 30px;
 }
 
 button.btn {
@@ -160,4 +173,12 @@ input, .alert-input {
 }
 .range-knob, .range-bar-active, .range-pin, .range-pin::before {
     background: $color-blue !important;
+}
+
+// ACTION SHEETS
+.action-sheet-group {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 21px;
+    border-radius: 20px;
 }
