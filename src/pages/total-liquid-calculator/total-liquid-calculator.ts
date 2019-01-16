@@ -198,4 +198,8 @@ export class TotalLiquidCalculatorPage {
   roundTwoDecimals(number) {
     return Math.round(number * 100) / 100;
   }
+
+  showPrebuildLiquidResults(liquid: Liquid) {
+    this.liquid
+  }
 }

@@ -3,6 +3,7 @@ import { ActionSheetController, AlertController, IonicPage, ModalController, Nav
 import { Component } from '@angular/core';
 import { LiquidProvider } from '../../providers/liquid/liquid';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Vibration } from '@ionic-native/vibration';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,8 @@ export class LiquidListPage {
               public actionSheedCtrl: ActionSheetController,
               private socialShare: SocialSharing,
               public alertCtrl: AlertController,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private vibrateCtrl: Vibration) {
   }
 
   ionViewDidLoad() {
@@ -31,13 +33,15 @@ export class LiquidListPage {
     if(this.check) {
       this.check = false;
 
+      this.vibrateCtrl.vibrate(30);
+      
       let actionSheet = this.actionSheedCtrl.create({
         buttons: [
           {
             text: 'Editar',
             icon: 'create',
             handler: () => {
-              console.log('Editaa');
+              
             }
           },
           {
@@ -52,7 +56,7 @@ export class LiquidListPage {
             text: 'Añadir fecha de maceración',
             icon: 'calendar',
             handler: () => {
-              console.log("Recordatorioo");
+              
             }
           },
           {

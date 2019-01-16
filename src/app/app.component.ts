@@ -1,5 +1,5 @@
-import { App, NavController, Platform, ViewController } from 'ionic-angular';
 import { Component, ViewChild } from '@angular/core';
+import { NavController, Platform, ViewController } from 'ionic-angular';
 
 import { HomePage } from '../pages/home/home';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,11 +14,10 @@ export class MyApp {
 
   constructor(platform: Platform,
               statusBar: StatusBar, 
-              splashScreen: SplashScreen,
-              appCtrl: App) {
+              splashScreen: SplashScreen) {
     platform.ready().then(() => {
       statusBar.styleDefault();
-      statusBar.backgroundColorByHexString('#fefefe');
+      statusBar.backgroundColorByHexString('#efefef');
       splashScreen.hide();
       
       this.nav.viewDidEnter.subscribe((view: ViewController) => {
