@@ -1,5 +1,6 @@
 import { ActionSheetController, AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 
+import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { Component } from '@angular/core';
 import { LiquidProvider } from '../../providers/liquid/liquid';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -21,8 +22,9 @@ export class LiquidListPage {
               public actionSheedCtrl: ActionSheetController,
               private socialShare: SocialSharing,
               public alertCtrl: AlertController,
-              private modalCtrl: ModalController,
-              private vibrateCtrl: Vibration) {
+              private vibrateCtrl: Vibration,
+              private calcProvider: CalculatorProvider,
+              private modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -56,7 +58,7 @@ export class LiquidListPage {
             text: 'Añadir fecha de maceración',
             icon: 'calendar',
             handler: () => {
-              
+              this.navCtrl.push("AddMacerationReminderPage", {liquid: liquid});
             }
           },
           {
@@ -94,6 +96,19 @@ export class LiquidListPage {
   }
 
   openResultsModal(liquid) {
-    
+    let results = this.calcProvider.calculateQuantities(liquid);
+
+    let resultsModal = this.modalCtrl.create("LiquidsResultModalPage", {
+      liquid: liquid,
+      nicotineMl: results.nicotineMl,
+      mlFlavourList: results.mlFlavourList,
+      flavourTotalPercentage: results.flavourTotalPercentage,
+      totalBase: results.totalBase,
+      totalBasePG: results.totalBasePG,
+      totalBaseVG: results.totalBaseVG,
+      nicotineInLiquid: results.nicotineInLiquid,
+      title: liquid.name
+    });
+    resultsModal.present();
   }
 }

@@ -14,8 +14,8 @@ import { Vibration } from '@ionic-native/vibration';
     LongPressModule
   ],
   providers: [
-    SocialSharing,
-    Vibration
+    Vibration,
+    SocialSharing
   ]
 })
 export class LiquidListPageModule {}

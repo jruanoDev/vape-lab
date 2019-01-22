@@ -1,6 +1,7 @@
 import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
+import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
@@ -23,14 +24,7 @@ export class TotalLiquidCalculatorPage {
   flavours:Array<Flavour> = [];
   saveToRecipeList:boolean = false;
 
-  // Calculator variables
-  nicotineMl:number = 0;
-  mlFlavourList:Array<Object> = [];
-  flavourTotalPercentage:number = 0;
-  totalBase:number = 0;
-  totalBasePG:number = 0;
-  totalBaseVG:number = 0;
-  nicotineInLiquid:boolean = true;
+  results: any;
 
   constructor(
     public navCtrl: NavController,
@@ -38,7 +32,8 @@ export class TotalLiquidCalculatorPage {
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     private liquidProvider: LiquidProvider,
-    private nativeTransitions: NativePageTransitions) {}
+    private nativeTransitions: NativePageTransitions,
+    private calcProvider: CalculatorProvider) {}
 
   ionViewWillLeave() {
     let options: NativeTransitionOptions = {
@@ -50,7 +45,7 @@ export class TotalLiquidCalculatorPage {
   }
 
   onAddFlavourClick() {
-    let modal =this.modalCtrl.create("AddFlavourModalPage");
+    let modal = this.modalCtrl.create("AddFlavourModalPage");
 
     let options: NativeTransitionOptions = {
       direction: 'up',
@@ -69,13 +64,14 @@ export class TotalLiquidCalculatorPage {
   openResultsModal() {
     let resultsModal = this.modalCtrl.create("LiquidsResultModalPage", {
       liquid: this.liquid,
-      nicotineMl: this.nicotineMl,
-      mlFlavourList: this.mlFlavourList,
-      flavourTotalPercentage: this.flavourTotalPercentage,
-      totalBase: this.totalBase,
-      totalBasePG: this.totalBasePG,
-      totalBaseVG: this.totalBaseVG,
-      nicotineInLiquid: this.nicotineInLiquid,
+      nicotineMl: this.results.nicotineMl,
+      mlFlavourList: this.results.mlFlavourList,
+      flavourTotalPercentage: this.results.flavourTotalPercentage,
+      totalBase: this.results.totalBase,
+      totalBasePG: this.results.totalBasePG,
+      totalBaseVG: this.results.totalBaseVG,
+      nicotineInLiquid: this.results.nicotineInLiquid,
+      title: '¡Aquí tienes tu nuevo e-liquid!'
     });
     resultsModal.present();
   }
@@ -119,35 +115,9 @@ export class TotalLiquidCalculatorPage {
   }
 
   calculateQuantities() {
-    let totalFlavourMl = 0;
-    this.mlFlavourList = [];
-    this.flavourTotalPercentage = 0;
+    this.results = this.calcProvider.calculateQuantities(this.liquid);
 
-    if(this.liquid.totalNicotine == 0)
-      this.nicotineInLiquid = false;
-
-    this.nicotineMl = (this.liquid.totalNicotine * this.liquid.totalQuantity) 
-      / this.liquid.nicokitConcentration;
-    
-    this.liquid.flavours.forEach((flavour) => {
-      this.flavourTotalPercentage += flavour.proportion;
-
-      let flavourMl = flavour.proportion * this.liquid.totalQuantity / 100;
-      totalFlavourMl += flavourMl;
-
-      this.mlFlavourList.push({
-        flavour: flavour,
-        quantity: flavourMl
-      });
-    });
-
-    this.totalBase = this.roundTwoDecimals(this.liquid.totalQuantity - this.nicotineMl - totalFlavourMl);
-    this.totalBasePG = this.roundTwoDecimals((this.liquid.basePG * this.totalBase) / 100);
-    this.totalBaseVG = this.roundTwoDecimals((this.liquid.baseVG * this.totalBase) / 100);
-
-    let totalCalc = this.nicotineMl + totalFlavourMl;
-
-    if(this.liquid.totalQuantity < totalCalc) {  
+    if(this.liquid.totalQuantity < this.results.totalCalc) {  
       let alert = this.alertCtrl.create({
         title: 'Error',
         message: 'Demasiados aromas para la cantidad de líquido total especificado',
@@ -171,7 +141,7 @@ export class TotalLiquidCalculatorPage {
     });
     
     if(isNaN(quantity) || quantity <= 0) {
-      message += '<li>No puedes calcular un líquido de menos de 0 ml</li>';
+      message += '<li>No puedes calcular un líquido de menos de 1 ml</li>';
       errorAlert.setMessage(message);
       errorAlert.present();
       
@@ -195,11 +165,7 @@ export class TotalLiquidCalculatorPage {
     this.flavours.splice(index, 1);
   }
 
-  roundTwoDecimals(number) {
-    return Math.round(number * 100) / 100;
-  }
-
   showPrebuildLiquidResults(liquid: Liquid) {
-    this.liquid
+  
   }
 }

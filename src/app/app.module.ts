@@ -11,6 +11,7 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { StorageProvider } from '../providers/storage/storage';
+import { CalculatorProvider } from '../providers/calculator/calculator';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { StorageProvider } from '../providers/storage/storage';
     FlavourProvider,
     LiquidProvider,
     NativePageTransitions,
+    CalculatorProvider,
   ]
 })
 export class AppModule {}

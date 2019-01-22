@@ -1,0 +1,56 @@
+page-add-maceration-reminder {
+    .scroll-content {
+        p.text {
+            padding: 0 10%;
+            margin-top: 20px;
+        }
+        input[type="number"] {
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 20px;
+            text-align: center;
+        }
+        ion-list {
+            padding: 0 10%;
+            margin-top: 20px;
+            font-family: $main-font;
+            .item-radio .item-inner {
+                border: none !important;
+                .radio-inner {
+                    background-color: $color-blue;
+                }
+                ion-radio {
+                    .button-effect {
+                        background-color: $color-blue;
+                    }
+                }
+            }
+            .item-radio-checked {
+                ion-label {
+                    color: $color-blue;
+                }
+                .radio-icon {
+                    border-color: $color-blue;
+                    .radio-inner {
+                        background-color: $color-blue;
+                    }
+                }
+
+            }
+        }
+        div.btn-group {
+            text-align: center;
+            margin-top: 30px;
+            .btn {
+                display: block;
+                margin: 0 auto;
+            }
+            .btn-plain {
+                text-align: center;
+                padding-right: 0;
+                margin-top: 10px;
+                display: inline-block;
+            }
+        }
+    }
+}

@@ -170,6 +170,9 @@ input, .alert-input {
             }
         }
     }
+    .alert-button {
+        color: $color-blue;
+    }
 }
 .range-knob, .range-bar-active, .range-pin, .range-pin::before {
     background: $color-blue !important;
@@ -181,4 +184,10 @@ input, .alert-input {
     margin: 0 auto;
     margin-bottom: 21px;
     border-radius: 20px;
+}
+
+// TEXT FORMAT
+p.text {
+    font-family: $main-font;
+    color: $color-text;
 }

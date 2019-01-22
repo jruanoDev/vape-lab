@@ -16,6 +16,7 @@ export class LiquidsResultModalPage {
   totalBase:number = 0;
   totalBasePG:number = 0;
   totalBaseVG:number = 0;
+  title: string = "";
 
   nicotineInLiquid:boolean = true;
 
@@ -30,6 +31,7 @@ export class LiquidsResultModalPage {
       this.totalBaseVG = navParams.get("totalBaseVG");
       this.nicotineInLiquid = navParams.get("nicotineInLiquid");      
       this.liquid = navParams.get("liquid");
+      this.title = navParams.get("title");
   }
 
   closeModal() {

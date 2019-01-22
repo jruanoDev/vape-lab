@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="transparent"></ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1 class="page-title">Añadir recordatorio</h1>
+
+  <p class="text">Introduce los días que macerará tu líquido y desde qué fecha vamos a contar los días</p>
+
+  <input type="number" [(ngModel)]="macerationDays" placeholder="Días de maceración">
+
+  <ion-list radio-group [(ngModel)]="countSinceCreationDay">
+    <ion-item>
+      <ion-label>Desde día actual</ion-label>
+      <ion-radio value="false"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Desde creación del líquido</ion-label>
+      <ion-radio value="true"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <div class="btn-group">
+    <button class="btn btn-small" (click)="addMacerationReminder()">Añadir</button>
+    <a class="btn-plain" (click)="dissmiss()">Cancelar</a>
+  </div>
+</ion-content>

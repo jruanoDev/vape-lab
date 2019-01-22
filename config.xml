@@ -87,4 +87,5 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="5.4.4" />
     <engine name="android" spec="7.1.4" />
     <plugin name="cordova-plugin-vibration" spec="3.1.0" />
+    <plugin name="cordova-plugin-calendar" spec="5.1.4" />
 </widget>
