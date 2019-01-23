@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { Calendar } from '@ionic-native/calendar';
 import { Component } from '@angular/core';
@@ -17,7 +17,8 @@ export class AddMacerationReminderPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private calendar: Calendar) {}
+              private calendar: Calendar,
+              private toastCtrl: ToastController) {}
 
   ionViewDidLoad() {
     this.liquid = this.navParams.get('liquid');
@@ -27,12 +28,21 @@ export class AddMacerationReminderPage {
     if(this.setUpCalendarPermissions() && this.checkForErrors()) {
       let reminderDate = this.getReminderDate();
 
-      this.calendar.createEvent('Fin de maceración de ' + this.liquid.name,
-        null, null, reminderDate, reminderDate)
+      let options = this.calendar.getCalendarOptions();
+      options.firstReminderMinutes = 1440;
+
+      this.calendar.createEventWithOptions('Fin de maceración de ' + this.liquid.name,
+        null, null, reminderDate, reminderDate, options)
         .then((data) => {
-          // Quitar esta pantalla y pasar un parámetro a la anterior para mostrar
-          // un snackbar con el resultado.
-        })
+          let toast = this.toastCtrl.create({
+            message: 'Recordatorio añadido correctamente',
+            duration: 3000,
+            position: 'bottom'
+          });
+      
+          toast.present();
+          this.navCtrl.pop();
+        });
     }
   }
 
@@ -46,6 +56,9 @@ export class AddMacerationReminderPage {
     this.calendar.hasReadWritePermission().then((data) => {
       if(!data) {
         this.calendar.requestReadWritePermission()
+        .then((data) => {
+          this.addMacerationReminder();
+        })
         .catch((err) => {
           check = false;
         });

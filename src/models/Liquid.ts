@@ -10,5 +10,6 @@ export class Liquid {
     nicokitPG:number;
     flavours:Array<Flavour>;
     name:string;
-    createdAt: Date
+    createdAt: Date;
+    isReminderCreated: boolean;
 }

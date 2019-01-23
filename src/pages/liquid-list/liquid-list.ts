@@ -1,4 +1,4 @@
-import { ActionSheetController, AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController, AlertController, IonicPage, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { Component } from '@angular/core';
@@ -24,7 +24,8 @@ export class LiquidListPage {
               public alertCtrl: AlertController,
               private vibrateCtrl: Vibration,
               private calcProvider: CalculatorProvider,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -36,6 +37,8 @@ export class LiquidListPage {
       this.check = false;
 
       this.vibrateCtrl.vibrate(30);
+
+      let message = liquid.isReminderAdded ? 'Añadir recordatorio de maceración' : 'Eliminar recordatorio'
       
       let actionSheet = this.actionSheedCtrl.create({
         buttons: [
@@ -55,10 +58,10 @@ export class LiquidListPage {
             }
           },
           {
-            text: 'Añadir fecha de maceración',
+            text: message,
             icon: 'calendar',
             handler: () => {
-              this.navCtrl.push("AddMacerationReminderPage", {liquid: liquid});
+              this.navCtrl.push("AddMacerationReminderPage", {liquid: liquid, callback: this.promptNotification});
             }
           },
           {
@@ -110,5 +113,12 @@ export class LiquidListPage {
       title: liquid.name
     });
     resultsModal.present();
+  }
+
+  promptNotification() {
+    return new Promise((resolve, reject) => {
+      
+      resolve();
+    }) 
   }
 }
