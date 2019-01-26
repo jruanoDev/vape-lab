@@ -1,8 +1,9 @@
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { Calendar } from '@ionic-native/calendar';
 import { Component } from '@angular/core';
 import { Liquid } from '../../models/Liquid';
+import { LiquidProvider } from '../../providers/liquid/liquid';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,9 @@ export class AddMacerationReminderPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private calendar: Calendar,
-              private toastCtrl: ToastController) {}
+              private toastCtrl: ToastController,
+              private alertCtrl: AlertController,
+              private liquidsProvider: LiquidProvider) {}
 
   ionViewDidLoad() {
     this.liquid = this.navParams.get('liquid');
@@ -33,7 +36,14 @@ export class AddMacerationReminderPage {
 
       this.calendar.createEventWithOptions('Fin de maceración de ' + this.liquid.name,
         null, null, reminderDate, reminderDate, options)
-        .then((data) => {
+        .then(() => {
+          this.liquidsProvider.updateLiquid(this.liquid, [
+            {
+              name: 'isReminderAdded',
+              value: 'true'
+            }
+          ]);
+          
           let toast = this.toastCtrl.create({
             message: 'Recordatorio añadido correctamente',
             duration: 3000,
@@ -43,6 +53,12 @@ export class AddMacerationReminderPage {
           toast.present();
           this.navCtrl.pop();
         });
+    } else {
+      this.alertCtrl.create({
+        title: 'Error',
+        message: 'Debes introducir los días de maceración y aceptar los permisos para continuar',
+        buttons: ['OK']
+      }).present();
     }
   }
 
@@ -56,10 +72,10 @@ export class AddMacerationReminderPage {
     this.calendar.hasReadWritePermission().then((data) => {
       if(!data) {
         this.calendar.requestReadWritePermission()
-        .then((data) => {
+        .then(() => {
           this.addMacerationReminder();
         })
-        .catch((err) => {
+        .catch(() => {
           check = false;
         });
       }
@@ -71,7 +87,7 @@ export class AddMacerationReminderPage {
   }
 
   checkForErrors() {
-    let numberCheck = new RegExp('^[0-9]*$');
+    let numberCheck = new RegExp('^[0-9]+$');
     if(numberCheck.test(this.macerationDays)) 
       return true;
 

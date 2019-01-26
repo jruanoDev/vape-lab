@@ -19,7 +19,7 @@
       *ngFor="let liquid of liquids"
       (click)="openResultsModal(liquid)">
       <div class="item-avatar">
-        <span>{{ liquid.name.charAt(0) }}</span>
+        <span>{{ liquid.name.charAt(0).toUpperCase() }}</span>
       </div>
       <div class="liquid-info">
         <h3>{{ liquid.name }}</h3>

@@ -1,3 +1,4 @@
+import { Calendar } from '@ionic-native/calendar';
 import { IonicPageModule } from 'ionic-angular';
 import { LiquidListPage } from './liquid-list';
 import { LongPressModule } from 'ionic-long-press';
@@ -15,7 +16,8 @@ import { Vibration } from '@ionic-native/vibration';
   ],
   providers: [
     Vibration,
-    SocialSharing
+    SocialSharing,
+    Calendar
   ]
 })
 export class LiquidListPageModule {}

@@ -1,7 +1,8 @@
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { CalculatorProvider } from '../providers/calculator/calculator';
 import { FlavourProvider } from '../providers/flavour/flavour';
 import { HomePage } from '../pages/home/home';
 import { IonicStorageModule } from '@ionic/storage';
@@ -11,7 +12,6 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { StorageProvider } from '../providers/storage/storage';
-import { CalculatorProvider } from '../providers/calculator/calculator';
 
 @NgModule({
   declarations: [

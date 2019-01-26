@@ -33,7 +33,15 @@ export class LiquidProvider {
       liquids.splice(index, 1);
       this.storage.set('liquids', liquids);
     });
+  }
 
-    
+  updateLiquid(liquid: Liquid, props: Array<any>) {
+    this.deleteLiquid(liquid);
+
+    props.forEach((prop) => {
+      liquid[prop.name] = prop.value;
+    });
+
+    this.saveLiquid(liquid);
   }
 }

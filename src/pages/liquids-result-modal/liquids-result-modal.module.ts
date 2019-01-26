@@ -1,6 +1,4 @@
-import { IonicPageModule, NavController, NavParams, ViewController } from 'ionic-angular';
-
-import { Liquid } from '../../models/Liquid';
+import { IonicPageModule } from 'ionic-angular';
 import { LiquidsResultModalPage } from './liquids-result-modal';
 import { NgModule } from '@angular/core';
 
