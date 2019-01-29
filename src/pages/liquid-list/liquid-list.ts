@@ -1,4 +1,4 @@
-import { ActionSheetController, AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController, AlertController, IonicPage, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { Calendar } from '@ionic-native/calendar';
@@ -26,7 +26,8 @@ export class LiquidListPage {
               private vibrateCtrl: Vibration,
               private calcProvider: CalculatorProvider,
               private modalCtrl: ModalController,
-              private calendar: Calendar) {
+              private calendar: Calendar,
+              private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -39,7 +40,7 @@ export class LiquidListPage {
 
       this.vibrateCtrl.vibrate(30);
 
-      let message = liquid.isReminderAdded ? 'Eliminar recordatorio' : 'Añadir recordatorio de maceración'
+      let message = liquid.reminderAddedAt ? 'Eliminar recordatorio' : 'Añadir recordatorio de maceración'
       
       let actionSheet = this.actionSheedCtrl.create({
         buttons: [
@@ -62,18 +63,26 @@ export class LiquidListPage {
             text: message,
             icon: 'calendar',
             handler: () => {
-              if(liquid.isReminderAdded) {
-                this.calendar.deleteEvent('Fin de maceración de ' + liquid.name, null, null, new Date('25/01/2019'), new Date('28/01/2019'))
+              if(liquid.reminderAddedAt) {
+                let reminderDate = new Date(liquid.reminderAddedAt);
+                
+                this.calendar.deleteEvent('Fin de maceración de ' + liquid.name,
+                  null, null, reminderDate, reminderDate)
                 .then(() => {
                   this.liquidsProvider.updateLiquid(liquid, [
                     {
-                      name: 'isReminderAdded',
-                      value: 'false'  
+                      name: 'reminderAddedAt',
+                      value: null
                     }
                   ]);
+                  
+                  this.toastCtrl.create({
+                    message: 'Recordatorio eliminado correctamente',
+                    duration: 3000,
+                    position: 'bottom'
+                  }).present();
                 })
                 .catch((err) => {
-                  console.log(err);
                   this.alertCtrl.create({
                     title: 'Error',
                     message: 'No existe ningún evento asociado a este líquido',
@@ -81,7 +90,7 @@ export class LiquidListPage {
                   }).present();
                 });
               } else {
-                this.navCtrl.push("AddMacerationReminderPage", {liquid: liquid, callback: this.promptNotification});
+                this.navCtrl.push("AddMacerationReminderPage", {liquid: liquid});
               }
             }
           },
@@ -134,12 +143,5 @@ export class LiquidListPage {
       title: liquid.name
     });
     resultsModal.present();
-  }
-
-  promptNotification() {
-    return new Promise((resolve, reject) => {
-      
-      resolve();
-    }) 
   }
 }

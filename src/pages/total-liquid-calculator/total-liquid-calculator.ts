@@ -102,6 +102,7 @@ export class TotalLiquidCalculatorPage {
             text: 'Guardar',
             handler: data => {
               this.liquid.name = data.nombre;
+              this.liquid.createdAt = new Date();
               this.liquidProvider.saveLiquid(this.liquid);
               this.calculateQuantities();
             }

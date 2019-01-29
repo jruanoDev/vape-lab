@@ -11,5 +11,5 @@ export class Liquid {
     flavours:Array<Flavour>;
     name:string;
     createdAt: Date;
-    isReminderCreated: boolean;
+    reminderAddedAt: Date;
 }

@@ -31,16 +31,19 @@ export class AddMacerationReminderPage {
     if(this.setUpCalendarPermissions() && this.checkForErrors()) {
       let reminderDate = this.getReminderDate();
 
+      console.log(reminderDate);
+
       let options = this.calendar.getCalendarOptions();
       options.firstReminderMinutes = 1440;
 
       this.calendar.createEventWithOptions('Fin de maceración de ' + this.liquid.name,
         null, null, reminderDate, reminderDate, options)
-        .then(() => {
+        .then((data) => {
+          console.log(data)
           this.liquidsProvider.updateLiquid(this.liquid, [
             {
-              name: 'isReminderAdded',
-              value: 'true'
+              name: 'reminderAddedAt',
+              value: reminderDate
             }
           ]);
           
@@ -52,7 +55,7 @@ export class AddMacerationReminderPage {
       
           toast.present();
           this.navCtrl.pop();
-        });
+        }).catch((err) => console.log(err));
     } else {
       this.alertCtrl.create({
         title: 'Error',
@@ -99,7 +102,7 @@ export class AddMacerationReminderPage {
     let reminderDate: Date;
     
     if(check) {
-      reminderDate = this.sumDaysToDate(this.liquid.createdAt, parseInt(this.macerationDays));
+      reminderDate = this.sumDaysToDate(new Date(this.liquid.createdAt), parseInt(this.macerationDays));
     } else {
       reminderDate = this.sumDaysToDate(new Date(), parseInt(this.macerationDays));
     }
@@ -108,7 +111,7 @@ export class AddMacerationReminderPage {
   }
 
   sumDaysToDate(date: Date, days) {
-    let tempDate = new Date(date);
+    let tempDate = date;
     tempDate.setDate(tempDate.getDate() + days);
     
     return tempDate;
