@@ -19,6 +19,11 @@ ion-header::after {
     background-image: none !important;
 }
 
+// remove grey dot on menu button
+.scroll-content {
+    overflow-y: auto;
+}
+
 ion-menu {
     ion-title {
         padding-left: 33px;
