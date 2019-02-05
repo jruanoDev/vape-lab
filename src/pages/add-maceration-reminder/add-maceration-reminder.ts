@@ -39,13 +39,10 @@ export class AddMacerationReminderPage {
       this.calendar.createEventWithOptions('Fin de maceración de ' + this.liquid.name,
         null, null, reminderDate, reminderDate, options)
         .then((data) => {
-          console.log(data)
-          this.liquidsProvider.updateLiquid(this.liquid, [
-            {
-              name: 'reminderAddedAt',
-              value: reminderDate
-            }
-          ]);
+          let tempLiquid = this.liquid;
+          tempLiquid.reminderAddedAt = reminderDate;
+
+          this.liquidsProvider.updateLiquid(this.liquid, tempLiquid);
           
           let toast = this.toastCtrl.create({
             message: 'Recordatorio añadido correctamente',

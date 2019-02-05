@@ -1,4 +1,4 @@
-import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { CalculatorProvider } from '../../providers/calculator/calculator';
@@ -24,6 +24,9 @@ export class TotalLiquidCalculatorPage {
   flavours:Array<Flavour> = [];
   saveToRecipeList:boolean = false;
 
+  // Flags
+  isEditScreen: boolean = false;
+
   results: any;
 
   constructor(
@@ -33,7 +36,17 @@ export class TotalLiquidCalculatorPage {
     public alertCtrl: AlertController,
     private liquidProvider: LiquidProvider,
     private nativeTransitions: NativePageTransitions,
-    private calcProvider: CalculatorProvider) {}
+    private calcProvider: CalculatorProvider,
+    private toastCtrl: ToastController) {}
+
+  ionViewDidLoad() {
+    if(this.navParams.get('isEditScreen') === true)
+      this.isEditScreen = true;
+
+    let liquidToEdit = this.navParams.get('liquidToEdit');
+    if(liquidToEdit)
+      this.setEditValues(liquidToEdit);
+  }
 
   ionViewWillLeave() {
     let options: NativeTransitionOptions = {
@@ -42,6 +55,50 @@ export class TotalLiquidCalculatorPage {
     };
 
     this.nativeTransitions.slide(options);
+  }
+
+  setEditValues(liquid: Liquid) {
+    this.liquid = liquid;
+
+    this.liquidQuantity = '' + liquid.totalQuantity;
+    this.baseProportion = liquid.baseVG;
+    this.totalNicotine = '' + liquid.totalNicotine;
+    this.nicokitConcentration = '' + liquid.nicokitConcentration;
+    this.nicokitProportion = liquid.nicokitVG;
+    this.flavours = liquid.flavours;
+  }
+
+  editLiquid() {
+    // Mirar esta parte y preparar para refactorización en un futuro
+    
+    let tempLiquid = this.liquid;
+    
+    if(this.checkForErrors()) {
+      tempLiquid.baseVG = this.baseProportion;
+      tempLiquid.basePG = 100 - this.baseProportion;
+      tempLiquid.totalNicotine = parseInt(this.totalNicotine);
+      tempLiquid.nicokitConcentration = parseInt(this.nicokitConcentration);
+      tempLiquid.nicokitPG = 100 - this.nicokitProportion;
+      tempLiquid.nicokitVG = this.nicokitProportion;
+      tempLiquid.flavours = this.flavours;
+      tempLiquid.totalQuantity = parseInt(this.liquidQuantity);
+    
+      this.liquidProvider.updateLiquid(this.liquid, tempLiquid)
+        .then(() => {
+          this.toastCtrl.create({
+            message: 'Líquido actualizado correctamente',
+            duration: 3000
+          }).present();
+          
+          this.navCtrl.pop();
+        })
+        .catch(() => {
+          this.toastCtrl.create({
+            message: 'No se pudo actualizar el líquido',
+            duration: 3000
+          }).present();
+        });
+    }
   }
 
   onAddFlavourClick() {
@@ -164,9 +221,5 @@ export class TotalLiquidCalculatorPage {
   deleteFlavourFromCalc(flavour:Flavour) {
     let index = this.flavours.indexOf(flavour);
     this.flavours.splice(index, 1);
-  }
-
-  showPrebuildLiquidResults(liquid: Liquid) {
-  
   }
 }

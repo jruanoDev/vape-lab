@@ -1,6 +1,7 @@
 <ion-header>
   <ion-navbar color="transparent">
-    <ion-title>Calculadora (Líquido)</ion-title>
+    <ion-title *ngIf="!isEditScreen">Calculadora (Líquido)</ion-title>
+    <ion-title *ngIf="isEditScreen">Editar {{ liquid.name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -76,12 +77,16 @@
       </div>
     </section>
   
-    <section>
+    <section *ngIf="!isEditScreen">
       <ion-checkbox color="primary" [(ngModel)]="saveToRecipeList"></ion-checkbox>
       <h6>Guardar en mi lista de líquidos</h6>
     </section>
   
-    <section>
+    <section *ngIf="!isEditScreen">
       <button class="btn-small" (click)="createLiquid()">Calcular</button>
+    </section>
+
+    <section *ngIf="isEditScreen">
+      <button class="btn-small" (click)="editLiquid()">Guardar</button>
     </section>
 </ion-content>

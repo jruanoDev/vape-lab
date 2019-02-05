@@ -32,20 +32,21 @@ export class LiquidProvider {
         index = data.map((liquid) => { return liquid.name }).indexOf(liquid.name);
         
         liquids.splice(index, 1);
-        this.storage.set('liquids', liquids).then(() => resolve()).catch((err) => reject(err));
+        this.storage.set('liquids', liquids)
+          .then(() => resolve())
+          .catch((err) => reject(err));
       });
     })
   }
 
-  updateLiquid(liquid: Liquid, props: Array<any>) {
-    this.deleteLiquid(liquid).then(() => {
-      props.forEach((prop) => {
-        liquid[prop.name] = prop.value;
-      });
-  
-      this.saveLiquid(liquid);
-    }).catch((err) => {
-      console.error('[ERROR] ' + err);
-    });
+  updateLiquid(liquid: Liquid, newLiquid: Liquid) {
+    return new Promise((resolve, reject) => {
+      this.deleteLiquid(liquid)
+      .then(() => {
+        this.saveLiquid(newLiquid);
+        resolve();
+      })
+      .catch((err) => reject(err));
+    })
   }
 }

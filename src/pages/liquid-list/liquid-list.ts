@@ -48,7 +48,10 @@ export class LiquidListPage {
             text: 'Editar',
             icon: 'create',
             handler: () => {
-              
+              this.navCtrl.push('TotalLiquidCalculatorPage', { 
+                isEditScreen: true,
+                liquidToEdit: liquid
+              });
             }
           },
           {
@@ -69,12 +72,10 @@ export class LiquidListPage {
                 this.calendar.deleteEvent('Fin de maceración de ' + liquid.name,
                   null, null, reminderDate, reminderDate)
                 .then(() => {
-                  this.liquidsProvider.updateLiquid(liquid, [
-                    {
-                      name: 'reminderAddedAt',
-                      value: null
-                    }
-                  ]);
+                  let tempLiquid = liquid;
+                  tempLiquid.reminderAddedAt = null;
+
+                  this.liquidsProvider.updateLiquid(liquid, tempLiquid);
                   
                   this.toastCtrl.create({
                     message: 'Recordatorio eliminado correctamente',
