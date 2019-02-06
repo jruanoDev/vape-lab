@@ -1,6 +1,9 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
 import { FlavourListPage } from './flavour-list';
+import { IonicPageModule } from 'ionic-angular';
+import { LongPressModule } from 'ionic-long-press';
+import { NgModule } from '@angular/core';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Vibration } from '@ionic-native/vibration';
 
 @NgModule({
   declarations: [
@@ -8,6 +11,11 @@ import { FlavourListPage } from './flavour-list';
   ],
   imports: [
     IonicPageModule.forChild(FlavourListPage),
+    LongPressModule
   ],
+  providers: [
+    Vibration,
+    SocialSharing,
+  ]
 })
 export class FlavourListPageModule {}

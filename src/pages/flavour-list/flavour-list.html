@@ -1,22 +1,38 @@
-<!--
-  Generated template for the FlavourListPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar hideBackButton>
+  <ion-navbar hideBackButton color="transparent">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-title>FlavourListPage</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <h1 class="page-title">Tus aromas</h1>
 
+  <ion-list>
+    <button 
+      ion-item 
+      ion-long-press 
+      [interval]="400" 
+      (onPressing)="onItemLongClick(flavour)" 
+      (onPressEnd)="onItemLongClickRelease()" 
+      *ngFor="let flavour of flavours"
+      (click)="openResultsModal(liquid)">
+      <div class="item-avatar">
+        <span>{{ flavour.name.charAt(0).toUpperCase() }}</span>
+      </div>
+      <div class="flavour-info">
+        <h3>{{ flavour.name }}</h3>
+        <div class="flavours">
+          <h5>
+            {{ flavour.brand }}
+          </h5>
+        </div>
+      </div>
+    </button>
+  </ion-list>
 </ion-content>
+
+<!-- PONER PANTALLA INDICANDO QUE NO HAY NINGÚN LÍQUIDO AÑADIDO 
+     https://thenounproject.com/search/?q=vape&i=1497413 -->
+

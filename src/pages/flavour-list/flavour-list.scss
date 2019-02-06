@@ -1,3 +1,63 @@
 page-flavour-list {
-
+    .scroll-content {
+        ion-list {
+            margin-top: 35px;
+            padding-right: 10px;
+            button {
+                transition: background .3s ease-in-out;
+                border-radius: 3px;
+                &:focus {
+                    background: $color-blue-active-menu !important;
+                    transition: background .3s ease-in-out !important;
+                }
+                .button-effect {
+                    background-color: $color-blue;
+                }
+                .item-inner {
+                    border-bottom: none !important;
+                }
+                .item-avatar {
+                    min-width: 50px;
+                    min-height: 50px;
+                    background-color: $color-blue;
+                    border-radius: 100px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 15px;
+                    span {
+                        color: $color-white;
+                        font-family: $main-font;
+                        font-size: 25px;
+                        margin-top: 3px;
+                    }
+                }
+                ion-label {
+                    display: flex;
+                    align-items: center;
+                    .flavour-info {
+                        margin-top: 2px;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        h3 {
+                            display: inline-block;
+                            font-family: $main-font;
+                            font-size: 20px;
+                            font-weight: 500;
+                        }
+                        .flavours {
+                            margin-top: 3px;
+                            h5 {
+                                display: block;
+                                font-weight: 100;
+                                color: $color-placeholder;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+

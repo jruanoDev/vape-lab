@@ -1,4 +1,4 @@
-import { AlertController, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 import { Component } from '@angular/core';
@@ -16,12 +16,29 @@ export class AddFlavourModalPage {
   flavourProportion:number;
   saveToList:boolean = false;
 
+  flavourToEdit: Flavour;
+
+  // Flags
+  isEditModal: boolean = false;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public viewCtrl: ViewController,
               public alertCtrl: AlertController,
               private flavourProvider: FlavourProvider,
-              private nativeTransitions: NativePageTransitions) {}
+              private nativeTransitions: NativePageTransitions,
+              private toastCtrl: ToastController) {}
+
+  ionViewDidLoad() {
+    if(this.navParams.get('isEditModal') === true)
+      this.isEditModal = true;
+
+    let flavourTemp = this.navParams.get('flavour');
+    if(flavourTemp) {
+      this.setEditValues(flavourTemp);
+      this.flavourToEdit = flavourTemp;
+    }
+  }
 
   ionViewWillLeave() {
     let options: NativeTransitionOptions = {
@@ -30,6 +47,37 @@ export class AddFlavourModalPage {
     };
 
     this.nativeTransitions.slide(options);
+  }
+
+  setEditValues(flavour) {
+    this.flavourName = flavour.name;
+    this.flavourBrand = flavour.brand;
+    this.flavourProportion = flavour.proportion;
+  }
+
+  editFlavour() {
+    if(this.checkForErrors()) {
+      let newFlavour = new Flavour();
+      newFlavour.name = this.flavourName;
+      newFlavour.brand = this.flavourBrand;
+      newFlavour.proportion = this.flavourProportion;
+
+      this.flavourProvider.updateFlavour(this.flavourToEdit, newFlavour)
+        .then(() => {
+          this.toastCtrl.create({
+            message: 'Aroma actualizado correctamente',
+            duration: 3000
+          }).present();
+          
+          this.navCtrl.pop();
+        })
+        .catch(() => {
+          this.toastCtrl.create({
+            message: 'No se pudo actualizar el aroma',
+            duration: 3000
+          }).present();
+        });
+    }
   }
 
   createFlavour() {
