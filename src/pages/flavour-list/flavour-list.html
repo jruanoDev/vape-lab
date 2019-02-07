@@ -16,8 +16,7 @@
       [interval]="400" 
       (onPressing)="onItemLongClick(flavour)" 
       (onPressEnd)="onItemLongClickRelease()" 
-      *ngFor="let flavour of flavours"
-      (click)="openResultsModal(liquid)">
+      *ngFor="let flavour of flavours">
       <div class="item-avatar">
         <span>{{ flavour.name.charAt(0).toUpperCase() }}</span>
       </div>
@@ -25,7 +24,7 @@
         <h3>{{ flavour.name }}</h3>
         <div class="flavours">
           <h5>
-            {{ flavour.brand }}
+            {{ flavour.brand }} - {{ flavour.proportion }}%
           </h5>
         </div>
       </div>

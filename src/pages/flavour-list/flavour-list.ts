@@ -1,4 +1,4 @@
-import { ActionSheetController, AlertController, IonicPage, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { ActionSheetController, AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 
 import { Component } from '@angular/core';
 import { FlavourProvider } from '../../providers/flavour/flavour';
@@ -22,16 +22,14 @@ export class FlavourListPage {
               private socialShare: SocialSharing,
               public alertCtrl: AlertController,
               private vibrateCtrl: Vibration,
-              private modalCtrl: ModalController,
-              private toastCtrl: ToastController) {
-  }
+              private modalCtrl: ModalController) {}
 
   ionViewDidLoad() {
     this.getFlavours();
   }
 
   getFlavours() {
-    this.flavoursProvider.getAllFlavours().then(data => this.flavours = data);
+    this.flavoursProvider.getAllFlavours().then(data => this.flavours = data.reverse());
   }
 
   onItemLongClick(flavour) {
@@ -59,8 +57,8 @@ export class FlavourListPage {
             text: 'Compartir',
             icon: 'share',
             handler: () => {
-              let message = "Hola\n Bienvenido"
-              this.socialShare.share(message, "Tomalo");
+              let message = "- Aroma: " + flavour.name + "\n- Marca: " + flavour.brand + "\n- Proporción: " + flavour.proportion + "%\n\nCompartido mediante VapeLab";
+              this.socialShare.share(message, "¡Mira este aroma de VapeLab!");
             }
           },
           {
@@ -96,22 +94,4 @@ export class FlavourListPage {
   onItemLongClickRelease() {
     this.check = true;
   }
-
-   /* openResultsModal(liquid) {
-    let results = this.calcProvider.calculateQuantities(liquid);
-
-    let resultsModal = this.modalCtrl.create("LiquidsResultModalPage", {
-      liquid: liquid,
-      nicotineMl: results.nicotineMl,
-      mlFlavourList: results.mlFlavourList,
-      flavourTotalPercentage: results.flavourTotalPercentage,
-      totalBase: results.totalBase,
-      totalBasePG: results.totalBasePG,
-      totalBaseVG: results.totalBaseVG,
-      nicotineInLiquid: results.nicotineInLiquid,
-      title: liquid.name
-    });
-    resultsModal.present();
-  }  */
-
 }

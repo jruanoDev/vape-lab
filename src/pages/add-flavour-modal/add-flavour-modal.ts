@@ -15,6 +15,7 @@ export class AddFlavourModalPage {
   flavourBrand:string = "";
   flavourProportion:number;
   saveToList:boolean = false;
+  staticFlavourName = "";
 
   flavourToEdit: Flavour;
 
@@ -37,6 +38,8 @@ export class AddFlavourModalPage {
     if(flavourTemp) {
       this.setEditValues(flavourTemp);
       this.flavourToEdit = flavourTemp;
+
+      this.staticFlavourName = flavourTemp.name;
     }
   }
 

@@ -31,7 +31,7 @@ export class LiquidListPage {
   }
 
   ionViewDidLoad() {
-    this.liquidsProvider.getAllLiquids().then(data => this.liquids = data);
+    this.liquidsProvider.getAllLiquids().then(data => this.liquids = data.reverse());
   }
 
   onItemLongClick(liquid) {
