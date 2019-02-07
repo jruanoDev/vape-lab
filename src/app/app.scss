@@ -24,6 +24,40 @@ ion-header::after {
     overflow-y: auto;
 }
 
+.no-liquid, .no-flavour {
+    width: 100%;
+    text-align: center;
+    padding-top: 45px;
+    img {
+        max-width: 50%;
+    }
+    h3 {
+        font-family: $main-font;
+        max-width: 70%;
+        margin: 30px auto 0 auto;
+        font-weight: 600;
+        color: $color-text;
+    }
+    h5 {
+        color: $color-blue;
+        font-size: 17px;
+        margin-top: 30px;
+    }
+}
+
+.toast-wrapper {
+    bottom: 20px !important;
+    max-width: 320px !important;
+    border-radius: 5px !important;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .3);
+    background: $color-white !important;
+    .toast-message {
+        font-family: $main-font;
+        color: black;
+        font-weight: 600;
+    }
+}
+
 ion-menu {
     ion-title {
         padding-left: 33px;

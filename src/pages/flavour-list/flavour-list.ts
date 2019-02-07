@@ -94,4 +94,8 @@ export class FlavourListPage {
   onItemLongClickRelease() {
     this.check = true;
   }
+
+  openPage(page) {
+    this.navCtrl.push(page);
+  }
 }
