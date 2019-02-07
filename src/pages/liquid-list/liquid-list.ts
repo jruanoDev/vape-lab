@@ -58,8 +58,19 @@ export class LiquidListPage {
             text: 'Compartir',
             icon: 'share',
             handler: () => {
-              let message = "Hola\n Bienvenido"
-              this.socialShare.share(message, "Tomalo");
+              let message = "- Nombre: " + liquid.name + "\n- Cantidad: " + liquid.totalQuantity + " ml" +
+              "\n- Proporción: " + liquid.baseVG + "/" + liquid.basePG 
+              + "\n- Nicotina total: " + liquid.totalNicotine + "mg"
+              + "\n- Nicokits: " + liquid.nicokitConcentration 
+              + " mg/ml - " + liquid.nicokitVG + "/" + liquid.nicokitPG + " VG/PG"
+              + "\n\nAromas\n---------------------";
+
+              liquid.flavours.forEach((flavour, i) => {
+                message += "\n\nAroma " + i + 1 + "\n - Nombre: " + flavour.name
+                + "\n - Marca: " + flavour.brand + "\n - Proporción: " + flavour.proportion + "%";
+              });
+              
+              this.socialShare.share(message, "¡Mira este líquido de VapeLab!");
             }
           },
           {
