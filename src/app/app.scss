@@ -24,6 +24,35 @@ ion-header::after {
     overflow-y: auto;
 }
 
+.popover-content {
+    border-radius: 8px !important;
+    font-family: $main-font;
+}
+
+.item-radio {
+    color: $color-blue-radio-button;
+}
+
+.item-radio-checked ion-label {
+    color: $color-blue-pressed !important;
+}
+
+ion-select {
+    font-family: $main-font !important;
+}
+
+.item-select ion-label {
+    font-family: $main-font !important;
+    font-weight: 100;
+}
+
+.radio-icon.radio-checked {
+    border-color: $color-blue !important;
+    .radio-inner {
+        background-color: $color-blue !important;
+    }
+}
+
 .no-liquid, .no-flavour {
     width: 100%;
     text-align: center;
