@@ -9,7 +9,7 @@
 <ion-content padding>
   <h1 class="page-title">Tus líquidos</h1>
 
-  <ion-list>
+  <ion-list *ngIf="liquids.length > 0">
     <button 
       ion-item 
       ion-long-press 
@@ -31,7 +31,10 @@
       </div>
     </button>
   </ion-list>
-</ion-content>
 
-<!-- PONER PANTALLA INDICANDO QUE NO HAY NINGÚN LÍQUIDO AÑADIDO 
-     https://thenounproject.com/search/?q=vape&i=1497413 -->
+  <section class="no-liquid" *ngIf="liquids.length <= 0">
+      <img src="../../assets/imgs/no_liquid_icon.svg">
+      <h3>No has añadido ningún líquido aún</h3>
+      <h5 (click)="openPage('TotalLiquidCalculatorPage')">Haz click aquí para añadir uno</h5>
+  </section>
+</ion-content>

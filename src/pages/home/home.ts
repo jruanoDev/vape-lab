@@ -1,7 +1,7 @@
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { NavController, ToastController } from 'ionic-angular';
 
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
@@ -11,7 +11,8 @@ import { StorageProvider } from '../../providers/storage/storage';
 export class HomePage {
   constructor(public navCtrl: NavController,
               private storageProvider: StorageProvider,
-              private nativeTransitions: NativePageTransitions) {}
+              private nativeTransitions: NativePageTransitions,
+              private toastCtrl: ToastController) {}
 
   options: NativeTransitionOptions = {
     direction: 'left',
@@ -21,6 +22,11 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.storageProvider.checkFirstLaunch();
+
+    /* this.toastCtrl.create({
+      message: 'Error al crear un líquido',
+      duration: 3000
+    }).present(); */
   }
 
   openPage(page:string) {

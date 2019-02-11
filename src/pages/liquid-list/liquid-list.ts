@@ -156,4 +156,8 @@ export class LiquidListPage {
     });
     resultsModal.present();
   }
+
+  openPage(page) {
+    this.navCtrl.push(page);
+  }
 }
