@@ -90,6 +90,7 @@ export class AddFlavourModalPage {
       flavour.name = this.flavourName;
       flavour.brand = this.flavourBrand;
       flavour.proportion = this.flavourProportion;
+      flavour.isFavourite = false;
 
       if(flavour.brand == "")
         flavour.brand = "Sin marca";

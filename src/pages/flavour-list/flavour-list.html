@@ -28,6 +28,8 @@
           </h5>
         </div>
       </div>
+      <ion-icon *ngIf="!flavour.isFavourite" (click)="updateFlavourFavourite(flavour, true)" name="star-outline"></ion-icon>
+      <ion-icon *ngIf="flavour.isFavourite" (click)="updateFlavourFavourite(flavour, false)" name="star"></ion-icon>
     </button>
   </ion-list>
   

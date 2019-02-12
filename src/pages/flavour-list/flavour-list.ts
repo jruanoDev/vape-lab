@@ -98,4 +98,14 @@ export class FlavourListPage {
   openPage(page) {
     this.navCtrl.push(page);
   }
+
+  updateFlavourFavourite(flavour, isFavourite) {
+    console.log("hola");
+    let newFlavour = flavour;
+    newFlavour.isFavourite = isFavourite;
+
+    this.flavoursProvider.updateFlavour(flavour, newFlavour)
+    .then(() => this.getFlavours())
+    .catch((err) => console.log("[ERROR] => " + err));
+  }
 }
