@@ -8,6 +8,9 @@ page-total-flavour-calculator {
         border-radius: 3px;
         padding: 15px;
         box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.15);
+        a {
+          cursor: pointer;
+        }
       }
       ion-checkbox {
         margin-right: 10px;

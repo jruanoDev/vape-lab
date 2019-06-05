@@ -54,6 +54,11 @@ export class FlavourListPage {
             }
           },
           {
+            text: flavour.isFavourite ? 'Quitar aroma de favoritos' : 'Añadir aroma a favoritos',
+            icon: 'star',
+            handler: () => this.updateFlavourFavourite(flavour, flavour.isFavourite ? false : true)
+          },
+          {
             text: 'Compartir',
             icon: 'share',
             handler: () => {
@@ -100,12 +105,11 @@ export class FlavourListPage {
   }
 
   updateFlavourFavourite(flavour, isFavourite) {
-    console.log("hola");
     let newFlavour = flavour;
+    
+    flavour.isFavourite = isFavourite;
     newFlavour.isFavourite = isFavourite;
 
-    this.flavoursProvider.updateFlavour(flavour, newFlavour)
-    .then(() => this.getFlavours())
-    .catch((err) => console.log("[ERROR] => " + err));
+    this.flavoursProvider.updateFlavour(flavour, newFlavour);
   }
 }
