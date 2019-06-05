@@ -7,23 +7,46 @@
     Añade tu aroma
   </h1>
 
-  <h1 *ngIf="isEditModal">
-    Editar {{ staticFlavourName }}
-  </h1>
+  <h1 *ngIf="isEditModal">Editar {{ staticFlavourName }}</h1>
 
   <section>
     <h5>Nombre <span *ngIf="!isEditModal">(Opcional)</span></h5>
-    <input type="text" placeholder="nombre del aroma" [(ngModel)]="flavourName">
+    <input
+      type="text"
+      placeholder="nombre del aroma"
+      [(ngModel)]="flavourName"
+    />
   </section>
 
   <section>
-      <h5>Marca (Opcional)</h5>
-      <input type="text" placeholder="marca del aroma" [(ngModel)]="flavourBrand">
+    <h5>Marca (Opcional)</h5>
+    <input
+      type="text"
+      placeholder="marca del aroma"
+      [(ngModel)]="flavourBrand"
+    />
+  </section>
+
+  <section *ngIf="isQuantityEnabled">
+    <h5>Cantidad (ml)</h5>
+    <input
+      type="number"
+      placeholder="cantidad del aroma que tienes"
+      max="100"
+      min="0"
+      [(ngModel)]="flavourQuantity"
+    />
   </section>
 
   <section>
-      <h5>Proporción (%)</h5>
-      <input type="number" placeholder="proporción del aroma" max=100 min=0 [(ngModel)]="flavourProportion">
+    <h5>Proporción (%)</h5>
+    <input
+      type="number"
+      placeholder="proporción del aroma"
+      max="100"
+      min="0"
+      [(ngModel)]="flavourProportion"
+    />
   </section>
 
   <section *ngIf="!isEditModal">

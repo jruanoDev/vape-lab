@@ -1,10 +1,10 @@
 <ion-header>
-    <ion-navbar color="transparent" hideBackButton>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar color="transparent" hideBackButton>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding>
   <div class="circle-1"></div>
@@ -12,17 +12,29 @@
   <h1>¿Cómo quieres calcular tu nuevo e-liquid?</h1>
   <h5>A partir de...</h5>
   <div class="calculator-buttons">
-    <button ion-item class="card-btn" (click)="openPage('TotalLiquidCalculatorPage')">
+    <button
+      ion-item
+      class="card-btn"
+      (click)="openPage('TotalLiquidCalculatorPage')"
+    >
       <div class="button-content">
         Líquido total
-        <span class="description">Haz tus líquidos a partir del líquido total que obtendrás</span>
+        <span class="description"
+          >Haz tus líquidos a partir del líquido total que obtendrás</span
+        >
       </div>
       <ion-icon name="ios-arrow-forward"></ion-icon>
     </button>
-    <button ion-item class="card-btn" (click)="openPage('totalFlavour')">
+    <button
+      ion-item
+      class="card-btn"
+      (click)="openPage('TotalFlavourCalculatorPage')"
+    >
       <div class="button-content">
-          Aroma total
-          <span class="description">Haz tus líquidos a partir del aroma que tienes</span>
+        Aroma total
+        <span class="description"
+          >Haz tus líquidos a partir del aroma que tienes</span
+        >
       </div>
       <ion-icon name="ios-arrow-forward"></ion-icon>
     </button>
