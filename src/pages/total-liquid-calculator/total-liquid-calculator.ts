@@ -54,6 +54,8 @@ export class TotalLiquidCalculatorPage {
   // check if user comes from home screen or from edit option
   ionViewDidLoad() {
     if (this.navParams.get('isEditScreen') === true) this.isEditScreen = true;
+    if (this.navParams.get('saveDefault') === true)
+      this.saveToRecipeList = true;
 
     let liquidToEdit = this.navParams.get('liquidToEdit');
     if (liquidToEdit) this.setEditValues(liquidToEdit);

@@ -10,31 +10,46 @@
   <h1 class="page-title">Tus aromas</h1>
 
   <ion-list *ngIf="flavours.length > 0">
-    <button 
-      ion-item 
-      ion-long-press 
-      [interval]="400" 
-      (onPressing)="onItemLongClick(flavour)" 
-      (onPressEnd)="onItemLongClickRelease()" 
-      *ngFor="let flavour of flavours">
+    <button
+      ion-item
+      ion-long-press
+      [interval]="400"
+      (onPressing)="onItemLongClick(flavour)"
+      (onPressEnd)="onItemLongClickRelease()"
+      *ngFor="let flavour of flavours"
+    >
       <div class="item-avatar">
         <span>{{ flavour.name.charAt(0).toUpperCase() }}</span>
       </div>
       <div class="flavour-info">
         <h3>{{ flavour.name }}</h3>
         <div class="flavours">
-          <h5>
-            {{ flavour.brand }} - {{ flavour.proportion }}%
-          </h5>
+          <h5>{{ flavour.brand }} - {{ flavour.proportion }}%</h5>
         </div>
       </div>
-      <ion-icon *ngIf="flavour.isFavourite" (click)="updateFlavourFavourite(flavour, false)" name="star"></ion-icon>
+      <ion-icon
+        *ngIf="flavour.isFavourite"
+        (click)="updateFlavourFavourite(flavour, false)"
+        name="star"
+      ></ion-icon>
     </button>
   </ion-list>
-  
+
   <section class="no-flavour" *ngIf="flavours.length <= 0">
-    <img src="../../assets/imgs/no_flavour_icon.svg">
+    <img src="../../assets/imgs/no_flavour_icon.svg" />
     <h3>No has añadido ningún aroma aún</h3>
-    <h5 (click)="openPage('TotalLiquidCalculatorPage')">Haz click aquí para añadir uno</h5>
+    <h5 (click)="openModal()">Haz click aquí para añadir uno</h5>
   </section>
+
+  <ion-fab
+    bottom
+    right
+    class="fab-button"
+    (click)="openModal()"
+    *ngIf="flavours.length > 0"
+  >
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

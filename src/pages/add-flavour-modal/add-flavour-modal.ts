@@ -34,6 +34,7 @@ export class AddFlavourModalPage {
   // Flags
   isEditModal: boolean = false;
   isQuantityEnabled: boolean = false;
+  isCreationScreen: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -50,6 +51,11 @@ export class AddFlavourModalPage {
 
     if (this.navParams.get('isQuantityEnabled') === true)
       this.isQuantityEnabled = true;
+
+    if (this.navParams.get('isCreationScreen') === true) {
+      this.isCreationScreen = true;
+      this.saveToList = true;
+    }
 
     let flavourTemp = this.navParams.get('flavour');
     if (flavourTemp) {
@@ -120,7 +126,7 @@ export class AddFlavourModalPage {
 
       if (flavour.name == '') flavour.name = 'Sin nombre';
 
-      if (this.saveToList) {
+      if (this.saveToList || this.isCreationScreen) {
         this.flavourProvider.saveFlavour(flavour);
       }
 

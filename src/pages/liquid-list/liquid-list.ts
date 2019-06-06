@@ -39,7 +39,7 @@ export class LiquidListPage {
     private toastCtrl: ToastController,
   ) {}
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.liquidsProvider
       .getAllLiquids()
       .then((data) => (this.liquids = data.reverse()));
@@ -213,7 +213,8 @@ export class LiquidListPage {
     resultsModal.present();
   }
 
-  openPage(page) {
-    this.navCtrl.push(page);
+  openPage(page, options = null) {
+    if (options) this.navCtrl.push(page, options);
+    else this.navCtrl.push(page);
   }
 }

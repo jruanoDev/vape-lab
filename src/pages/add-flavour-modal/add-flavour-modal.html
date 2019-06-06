@@ -49,7 +49,7 @@
     />
   </section>
 
-  <section *ngIf="!isEditModal">
+  <section *ngIf="!(isEditModal || isCreationScreen)">
     <ion-checkbox color="primary" [(ngModel)]="saveToList"></ion-checkbox>
     <h6>Guardar en mi lista de aromas</h6>
   </section>

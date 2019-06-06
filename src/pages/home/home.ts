@@ -1,23 +1,28 @@
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { Component } from '@angular/core';
+import {
+  NativePageTransitions,
+  NativeTransitionOptions,
+} from '@ionic-native/native-page-transitions';
+
 import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
-  constructor(public navCtrl: NavController,
-              private storageProvider: StorageProvider,
-              private nativeTransitions: NativePageTransitions,
-              private toastCtrl: ToastController) {}
+  constructor(
+    public navCtrl: NavController,
+    private storageProvider: StorageProvider,
+    private nativeTransitions: NativePageTransitions,
+  ) {}
 
   options: NativeTransitionOptions = {
     direction: 'left',
     duration: 300,
-    slowdownfactor: -1
+    slowdownfactor: -1,
   };
 
   ionViewDidLoad() {
@@ -29,7 +34,7 @@ export class HomePage {
     }).present(); */
   }
 
-  openPage(page:string) {
+  openPage(page: string) {
     this.nativeTransitions.slide(this.options);
     this.navCtrl.push(page);
   }

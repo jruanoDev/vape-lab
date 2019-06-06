@@ -4,7 +4,6 @@ import {
   ModalController,
   NavController,
   NavParams,
-  ToastController,
 } from 'ionic-angular';
 
 import { Component } from '@angular/core';
@@ -48,7 +47,6 @@ export class TotalFlavourCalculatorPage {
     private liquidProvider: LiquidProvider,
     private nativeTransitions: NativePageTransitions,
     private calcProvider: CalculatorProvider,
-    private toastCtrl: ToastController,
     private storage: Storage,
   ) {}
 

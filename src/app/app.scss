@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -16,273 +15,294 @@
 // automatically applied to the <body> element in the app.
 
 ion-header::after {
-    background-image: none !important;
+  background-image: none !important;
 }
 
 // remove grey dot on menu button
 .scroll-content {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 .popover-content {
-    border-radius: 8px !important;
-    font-family: $main-font;
+  border-radius: 8px !important;
+  font-family: $main-font;
 }
 
 .item-radio {
-    color: $color-blue-radio-button;
+  color: $color-blue-radio-button;
 }
 
 .item-radio-checked ion-label {
-    color: $color-blue-pressed !important;
+  color: $color-blue-pressed !important;
 }
 
 ion-select {
-    font-family: $main-font !important;
+  font-family: $main-font !important;
 }
 
 .item-select ion-label {
-    font-family: $main-font !important;
-    font-weight: 100;
+  font-family: $main-font !important;
+  font-weight: 100;
 }
 
 .radio-icon.radio-checked {
-    border-color: $color-blue !important;
-    .radio-inner {
-        background-color: $color-blue !important;
-    }
+  border-color: $color-blue !important;
+  .radio-inner {
+    background-color: $color-blue !important;
+  }
 }
 
-.no-liquid, .no-flavour {
-    width: 100%;
-    text-align: center;
-    padding-top: 45px;
-    img {
-        max-width: 150px;
-    }
-    h3 {
-        font-family: $main-font;
-        max-width: 70%;
-        margin: 30px auto 0 auto;
-        font-weight: 600;
-        color: $color-text;
-    }
-    h5 {
-        color: $color-blue;
-        font-size: 17px;
-        margin-top: 30px;
-    }
+.no-liquid,
+.no-flavour {
+  width: 100%;
+  text-align: center;
+  padding-top: 45px;
+  img {
+    max-width: 150px;
+  }
+  h3 {
+    font-family: $main-font;
+    max-width: 70%;
+    margin: 30px auto 0 auto;
+    font-weight: 600;
+    color: $color-text;
+  }
+  h5 {
+    color: $color-blue;
+    font-size: 17px;
+    margin-top: 30px;
+  }
 }
 
 .toast-wrapper {
-    bottom: 20px !important;
-    max-width: 320px !important;
-    border-radius: 5px !important;
-    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, .3);
-    background: $color-white !important;
-    .toast-message {
-        font-family: $main-font;
-        color: black;
-        font-weight: 600;
-    }
+  bottom: 20px !important;
+  max-width: 320px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
+  background: $color-white !important;
+  .toast-message {
+    font-family: $main-font;
+    color: black;
+    font-weight: 600;
+  }
 }
 
 ion-menu {
-    ion-title {
-        padding-left: 33px;
-        margin-top: 24px;
-        .toolbar-title {
-            font-size: 30px;
-            color: rgba(0, 0, 0, .6);
-            font-weight: 500;
-            font-family: $main-font;
-            b {
-                color: $color-blue;
-            }
-        }
+  ion-title {
+    padding-left: 33px;
+    margin-top: 24px;
+    .toolbar-title {
+      font-size: 30px;
+      color: rgba(0, 0, 0, 0.6);
+      font-weight: 500;
+      font-family: $main-font;
+      b {
+        color: $color-blue;
+      }
     }
-    ion-content {
-        top: 30px;
-        .scroll-content {
-            padding-right: 20px;
-            h6 {
-                padding-left: 25px;
-                margin-top: 40px;
-                font-size: 15px;
-                color: $color-placeholder;
-                font-weight: 100;
+  }
+  ion-content {
+    top: 30px;
+    .scroll-content {
+      padding-right: 20px;
+      h6 {
+        padding-left: 25px;
+        margin-top: 40px;
+        font-size: 15px;
+        color: $color-placeholder;
+        font-weight: 100;
+      }
+      button {
+        padding-left: 0 !important;
+        border-bottom-right-radius: 100px;
+        border-top-right-radius: 100px;
+        padding-right: 20px;
+        margin: 10px 0;
+        .item-inner {
+          border-bottom: none !important;
+          ion-label {
+            display: flex;
+            max-height: 50px;
+            align-items: center;
+            padding-left: 25px;
+            font-size: 18px;
+            color: rgb(82, 82, 82);
+            font-weight: 900;
+            img {
+              width: 20px;
+              margin-right: 25px;
             }
-            button {
-                padding-left: 0 !important;
-                border-bottom-right-radius: 100px;
-                border-top-right-radius: 100px;
-                padding-right: 20px;
-                margin: 10px 0;
-                .item-inner {
-                    border-bottom: none !important;
-                    ion-label {
-                        display: flex;
-                        max-height: 50px;
-                        align-items: center;
-                        padding-left: 25px;
-                        font-size: 18px;
-                        color: rgb(82, 82, 82);
-                        font-weight: 900;
-                        img {
-                            width: 20px;
-                            margin-right: 25px;
-                        }
-                    }
-                }
-                .button-effect {
-                    background: $color-blue;
-                }
-            }
-            button.active {
-                background-color: $color-blue-active-menu !important;
-                .item-inner ion-label {
-                    color: #222;
-                }
-            }
+          }
         }
+        .button-effect {
+          background: $color-blue;
+        }
+      }
+      button.active {
+        background-color: $color-blue-active-menu !important;
+        .item-inner ion-label {
+          color: #222;
+        }
+      }
     }
+  }
 }
 
 ion-navbar {
-    ion-title {
-        font-family: "Circular STD";
-    }
-    ion-icon, .toolbar-title {
-        color: #222 !important;
-    }
+  ion-title {
+    font-family: 'Circular STD';
+  }
+  ion-icon,
+  .toolbar-title {
+    color: #222 !important;
+  }
 }
 
-h1, h5, h6, button {
-    font-family: $main-font;
+h1,
+h5,
+h6,
+button {
+  font-family: $main-font;
 }
 
 h1.page-title {
-    font-size: 35px;
-    font-weight: 600;
-    margin-left: 30px;
+  font-size: 35px;
+  font-weight: 600;
+  margin-left: 30px;
+  margin-bottom: 0;
 }
 
 .card-btn {
-    padding: 20px 25px 20px 25px;
-    border-radius: 4px;
-    font-size: 20px;
-    background: $color-white;
-    color: #000;
-    box-shadow: 0 2px 3px 2px rgba(0, 0, 0, .15);
-    transition: all .1s ease-in-out;
-    text-align: left;
-    display: block;
-    width: 100%;
-    .item-inner {
-        padding: 0 !important;
-        border: none !important;
-        .input-wrapper {
-            display: block !important;
-            ion-label {
-                margin: 0 !important;
-                display: flex;
-                white-space: normal;
-                justify-content: space-between;
-            }
-        }
+  padding: 20px 25px 20px 25px;
+  border-radius: 4px;
+  font-size: 20px;
+  background: $color-white;
+  color: #000;
+  box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.15);
+  transition: all 0.1s ease-in-out;
+  text-align: left;
+  display: block;
+  width: 100%;
+  .item-inner {
+    padding: 0 !important;
+    border: none !important;
+    .input-wrapper {
+      display: block !important;
+      ion-label {
+        margin: 0 !important;
+        display: flex;
+        white-space: normal;
+        justify-content: space-between;
+      }
     }
-
+  }
 }
 
 button.btn {
-    padding: 20px 25px 20px 25px;
-    border-radius: 100px;
-    font-size: 20px;
-    background: $color-blue;
-    color: $color-white;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, .15);
-    transition: all .1s ease-in-out;
-    touch-action: manipulation;
+  padding: 20px 25px 20px 25px;
+  border-radius: 100px;
+  font-size: 20px;
+  background: $color-blue;
+  color: $color-white;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+  transition: all 0.1s ease-in-out;
+  touch-action: manipulation;
 }
 button.btn-small {
-    padding: 15px 20px 15px 20px;
-    border-radius: 100px;
-    font-size: 15px;
-    background: $color-blue;
-    color: $color-white;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
-    text-transform: uppercase;
-    transition: all .1s ease-in-out;
+  padding: 15px 20px 15px 20px;
+  border-radius: 100px;
+  font-size: 15px;
+  background: $color-blue;
+  color: $color-white;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
 }
-.btn, .btn-small {
-    &:active {
-        transform: scale(0.97);
-        transition: all .1s ease-in-out;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
-        background: $color-blue-pressed;
-    }
+.btn,
+.btn-small {
+  &:active {
+    transform: scale(0.97);
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    background: $color-blue-pressed;
+  }
 }
 a.btn-plain {
-    padding: 15px 20px 15px 0;
-    font-size: 15px;
-    text-transform: uppercase;
-    font-family: $main-font;
-    color: $color-blue;
+  padding: 15px 20px 15px 0;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: $main-font;
+  color: $color-blue;
 }
-input, .alert-input {
-    width: 100%;
-    padding: 20px 15px 20px 15px;
-    border-radius: 100px;
-    border: 2px solid #a8dbe1;
-    background-color: #a8dbe1;
-    color: #222;
-    font-size: 20px;
-    font-family: $main-font;
-    transition: border .3s ease-in-out;
-    &::placeholder {
-        color: $color-placeholder;
-    }
-    &:focus {
-        border: 2px solid $color-blue;
-        transition: border .3s ease-in-out;
-    }
+input,
+.alert-input {
+  width: 100%;
+  padding: 20px 15px 20px 15px;
+  border-radius: 100px;
+  border: 2px solid #a8dbe1;
+  background-color: #a8dbe1;
+  color: #222;
+  font-size: 20px;
+  font-family: $main-font;
+  transition: border 0.3s ease-in-out;
+  &::placeholder {
+    color: $color-placeholder;
+  }
+  &:focus {
+    border: 2px solid $color-blue;
+    transition: border 0.3s ease-in-out;
+  }
 }
 .alert-wrapper {
-    border-radius: 20px !important;
-    .alert-title, .alert-message {
-        font-family: $main-font;
-    }
-    .alert-message {
-        ul {
-            padding-left: 0;
-            list-style: none;
-            margin: 0;
-            li {
-                margin-bottom: 10px;
-                &:last-of-type {
-                    margin-bottom: 0;
-                }
-            }
+  border-radius: 20px !important;
+  .alert-title,
+  .alert-message {
+    font-family: $main-font;
+  }
+  .alert-message {
+    ul {
+      padding-left: 0;
+      list-style: none;
+      margin: 0;
+      li {
+        margin-bottom: 10px;
+        &:last-of-type {
+          margin-bottom: 0;
         }
+      }
     }
-    .alert-button {
-        color: $color-blue;
-    }
+  }
+  .alert-button {
+    color: $color-blue;
+  }
 }
-.range-knob, .range-bar-active, .range-pin, .range-pin::before {
-    background: $color-blue !important;
+.range-knob,
+.range-bar-active,
+.range-pin,
+.range-pin::before {
+  background: $color-blue !important;
 }
 
 // ACTION SHEETS
 .action-sheet-group {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 21px;
-    border-radius: 20px;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 21px;
+  border-radius: 20px;
 }
 
 // TEXT FORMAT
 p.text {
-    font-family: $main-font;
-    color: $color-text;
+  font-family: $main-font;
+  color: $color-text;
+}
+
+// FAB STYLES
+.fab-button {
+  button {
+    background-color: $color-blue-pressed;
+    ion-icon::before {
+      font-size: 29px;
+    }
+  }
 }

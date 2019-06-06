@@ -10,14 +10,15 @@
   <h1 class="page-title">Tus líquidos</h1>
 
   <ion-list *ngIf="liquids.length > 0">
-    <button 
-      ion-item 
-      ion-long-press 
-      [interval]="400" 
-      (onPressing)="onItemLongClick(liquid)" 
-      (onPressEnd)="onItemLongClickRelease()" 
+    <button
+      ion-item
+      ion-long-press
+      [interval]="400"
+      (onPressing)="onItemLongClick(liquid)"
+      (onPressEnd)="onItemLongClickRelease()"
       *ngFor="let liquid of liquids"
-      (click)="openResultsModal(liquid)">
+      (click)="openResultsModal(liquid)"
+    >
       <div class="item-avatar">
         <span>{{ liquid.name.charAt(0).toUpperCase() }}</span>
       </div>
@@ -25,7 +26,8 @@
         <h3>{{ liquid.name }}</h3>
         <div class="flavours">
           <h5>
-            {{ liquid.totalNicotine }} mg/ml - {{ liquid.flavours.length }} aroma(s)
+            {{ liquid.totalNicotine }} mg/ml -
+            {{ liquid.flavours.length }} aroma(s)
           </h5>
         </div>
       </div>
@@ -33,8 +35,22 @@
   </ion-list>
 
   <section class="no-liquid" *ngIf="liquids.length <= 0">
-      <img src="../../assets/imgs/no_liquid_icon.svg">
-      <h3>No has añadido ningún líquido aún</h3>
-      <h5 (click)="openPage('TotalLiquidCalculatorPage')">Haz click aquí para añadir uno</h5>
+    <img src="../../assets/imgs/no_liquid_icon.svg" />
+    <h3>No has añadido ningún líquido aún</h3>
+    <h5 (click)="openPage('TotalLiquidCalculatorPage', { saveDefault: true })">
+      Haz click aquí para añadir uno
+    </h5>
   </section>
+
+  <ion-fab
+    bottom
+    *ngIf="liquids.length > 0"
+    right
+    class="fab-button"
+    (click)="openPage('TotalLiquidCalculatorPage', { saveDefault: true })"
+  >
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
