@@ -45,3 +45,9 @@ npm run devapp
 ## Almacenamiento
 
 La aplicación almacena los datos en la memoria del dispositivo mediante el plugin **storage** de Ionic, para poder ver los valores almacenados deberemos hacerlo con el Inspector de nuestro navegador.
+
+## Dependencias
+
+Este proyecto está usando **Ionic 3** y merece la pena revisar bien si se va a actualizar esta versión, ya que puede que algunos plugins o el enrutado no funcionen en nuevas versiones debido a los cambios hechos por el equipo de Ionic.
+
+La versión de Angular usada en esta versión de Ionic es **Angular 5**.
