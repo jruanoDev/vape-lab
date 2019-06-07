@@ -1,6 +1,6 @@
 {
   "name": "vape-lab",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "author": "Jose María Ruano Gálvez",
   "homepage": "https://github.com/jruanodev",
   "private": true,
@@ -8,7 +8,10 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "android-dev": "ionic cordova run android",
+    "android": "ionic cordova run android --prod",
+    "devapp": "ionic serve --lab -c --devapp"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
