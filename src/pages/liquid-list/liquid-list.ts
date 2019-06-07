@@ -5,11 +5,16 @@ import {
   ModalController,
   NavController,
   NavParams,
+  Platform,
   ToastController,
 } from 'ionic-angular';
 
 import { Component } from '@angular/core';
 import { Calendar } from '@ionic-native/calendar';
+import {
+  NativePageTransitions,
+  NativeTransitionOptions,
+} from '@ionic-native/native-page-transitions';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Vibration } from '@ionic-native/vibration';
 
@@ -36,8 +41,19 @@ export class LiquidListPage {
     private calcProvider: CalculatorProvider,
     private modalCtrl: ModalController,
     private calendar: Calendar,
+    private nativeTransitions: NativePageTransitions,
     private toastCtrl: ToastController,
-  ) {}
+    private platform: Platform,
+  ) {
+    platform.registerBackButtonAction(() => {
+      let options: NativeTransitionOptions = {
+        direction: 'right',
+        duration: 300,
+      };
+      navCtrl.pop({ animate: false });
+      this.nativeTransitions.slide(options);
+    });
+  }
 
   ionViewWillEnter() {
     this.liquidsProvider

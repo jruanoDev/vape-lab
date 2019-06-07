@@ -4,6 +4,7 @@ import {
   ModalController,
   NavController,
   NavParams,
+  Platform,
   ToastController,
 } from 'ionic-angular';
 
@@ -49,7 +50,18 @@ export class TotalLiquidCalculatorPage {
     private nativeTransitions: NativePageTransitions,
     private calcProvider: CalculatorProvider,
     private toastCtrl: ToastController,
-  ) {}
+    private platform: Platform,
+  ) {
+    platform.registerBackButtonAction(() => {
+      let options: NativeTransitionOptions = {
+        direction: 'right',
+        duration: 300,
+      };
+
+      navCtrl.pop({ animate: false });
+      this.nativeTransitions.slide(options);
+    });
+  }
 
   // check if user comes from home screen or from edit option
   ionViewDidLoad() {
@@ -59,15 +71,6 @@ export class TotalLiquidCalculatorPage {
 
     let liquidToEdit = this.navParams.get('liquidToEdit');
     if (liquidToEdit) this.setEditValues(liquidToEdit);
-  }
-
-  ionViewWillLeave() {
-    let options: NativeTransitionOptions = {
-      direction: 'right',
-      duration: 300,
-    };
-
-    this.nativeTransitions.slide(options);
   }
 
   // fill inputs with data from params

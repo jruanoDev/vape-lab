@@ -5,6 +5,7 @@ import {
   ModalController,
   NavController,
   NavParams,
+  Platform,
 } from 'ionic-angular';
 
 import { Component } from '@angular/core';
@@ -37,7 +38,18 @@ export class FlavourListPage {
     private vibrateCtrl: Vibration,
     private nativeTransitions: NativePageTransitions,
     private modalCtrl: ModalController,
-  ) {}
+    private platform: Platform,
+  ) {
+    platform.registerBackButtonAction(() => {
+      let options: NativeTransitionOptions = {
+        direction: 'right',
+        duration: 300,
+      };
+
+      navCtrl.pop({ animate: false });
+      this.nativeTransitions.slide(options);
+    });
+  }
 
   ionViewDidLoad() {
     this.getFlavours();

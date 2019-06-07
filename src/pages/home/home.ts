@@ -22,16 +22,10 @@ export class HomePage {
   options: NativeTransitionOptions = {
     direction: 'left',
     duration: 300,
-    slowdownfactor: -1,
   };
 
   ionViewDidLoad() {
     this.storageProvider.checkFirstLaunch();
-
-    /* this.toastCtrl.create({
-      message: 'Error al crear un líquido',
-      duration: 3000
-    }).present(); */
   }
 
   openPage(page: string) {

@@ -4,6 +4,7 @@ import {
   ModalController,
   NavController,
   NavParams,
+  Platform,
 } from 'ionic-angular';
 
 import { Component } from '@angular/core';
@@ -48,21 +49,23 @@ export class TotalFlavourCalculatorPage {
     private nativeTransitions: NativePageTransitions,
     private calcProvider: CalculatorProvider,
     private storage: Storage,
-  ) {}
+    private platform: Platform,
+  ) {
+    platform.registerBackButtonAction(() => {
+      let options: NativeTransitionOptions = {
+        direction: 'right',
+        duration: 300,
+      };
+
+      navCtrl.pop({ animate: false });
+      this.nativeTransitions.slide(options);
+    });
+  }
 
   ionViewWillEnter() {
     this.storage
       .get('showFlavourMessage')
       .then((data) => (this.showMessage = data));
-  }
-
-  ionViewWillLeave() {
-    let options: NativeTransitionOptions = {
-      direction: 'right',
-      duration: 300,
-    };
-
-    this.nativeTransitions.slide(options);
   }
 
   onAddFlavourClick() {
