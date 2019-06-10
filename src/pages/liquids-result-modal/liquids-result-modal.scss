@@ -1,5 +1,6 @@
 page-liquids-result-modal {
     .scroll-content {
+        padding-bottom: 30px !important;
         h5 {
             font-size: 25px;
         }
@@ -10,15 +11,6 @@ page-liquids-result-modal {
         }
         section {
             padding: 30px;
-            &:last-of-type {
-                text-align: center;
-                button {
-                    background: transparent;
-                    ion-icon {
-                        font-size: 34px;
-                    }
-                }
-            }
             h6 {
                 margin-bottom: 0;
             }
@@ -67,6 +59,20 @@ page-liquids-result-modal {
                     }
                 }
             }
+        }
+    }
+    button.close-button {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.1);
+        background: $color-white;
+        ion-icon {
+            font-size: 30px;
         }
     }
 }

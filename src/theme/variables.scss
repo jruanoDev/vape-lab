@@ -47,23 +47,23 @@ $color-placeholder: rgb(83, 83, 83);
 $color-text: rgb(83, 83, 83);
 
 @font-face {
-  font-family: 'Circular STD';
-  src: url('../assets/fonts/CircularStd-Medium.otf');
+  font-family: 'Nunito';
+  src: url('../assets/fonts/Nunito-Regular.ttf');
 }
 
 @font-face {
-  font-family: 'Circular STD';
-  src: url('../assets/fonts/CircularStd-Bold.otf');
+  font-family: 'Nunito';
+  src: url('../assets/fonts/Nunito-Bold.ttf');
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'Circular STD';
-  src: url('../assets/fonts/CircularStd-Book.otf');
+  font-family: 'Nunito';
+  src: url('../assets/fonts/Nunito-Light.ttf');
   font-weight: 100;
 }
 
-$main-font: 'Circular STD';
+$main-font: 'Nunito';
 
 // App iOS Variables
 // --------------------------------------------------

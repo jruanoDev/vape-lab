@@ -7,17 +7,16 @@ import {
   NavParams,
   Platform,
 } from 'ionic-angular';
-
-import { Component } from '@angular/core';
 import {
   NativePageTransitions,
   NativeTransitionOptions,
 } from '@ionic-native/native-page-transitions';
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { Vibration } from '@ionic-native/vibration';
 
+import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
 import { FlavourProvider } from '../../providers/flavour/flavour';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Vibration } from '@ionic-native/vibration';
 
 @IonicPage()
 @Component({
@@ -58,11 +57,6 @@ export class FlavourListPage {
   getFlavours() {
     this.flavoursProvider.getAllFlavours().then((data) => {
       this.flavours = data.reverse();
-      /* data.forEach((element) => {
-        for (let i = 0; i < 20; i++) {
-          this.flavours.push(element);
-        }
-      }); */
     });
   }
 
