@@ -7,16 +7,15 @@ import {
   Platform,
   ToastController,
 } from 'ionic-angular';
-
-import { Component } from '@angular/core';
 import {
   NativePageTransitions,
   NativeTransitionOptions,
 } from '@ionic-native/native-page-transitions';
 
+import { CalculatorProvider } from '../../providers/calculator/calculator';
+import { Component } from '@angular/core';
 import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
-import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { LiquidProvider } from '../../providers/liquid/liquid';
 
 @IonicPage()
@@ -65,6 +64,15 @@ export class TotalLiquidCalculatorPage {
 
   // check if user comes from home screen or from edit option
   ionViewDidLoad() {
+    /* setInterval(() => {
+      this.toastCtrl
+            .create({
+              message: 'No se pudo actualizar el líquido',
+              duration: 3000,
+            })
+            .present();
+    }, 5000); */
+
     if (this.navParams.get('isEditScreen') === true) this.isEditScreen = true;
     if (this.navParams.get('saveDefault') === true)
       this.saveToRecipeList = true;

@@ -37,7 +37,7 @@ export class FlavourListPage {
     private vibrateCtrl: Vibration,
     private nativeTransitions: NativePageTransitions,
     private modalCtrl: ModalController,
-    private platform: Platform,
+    platform: Platform,
   ) {
     platform.registerBackButtonAction(() => {
       let options: NativeTransitionOptions = {
