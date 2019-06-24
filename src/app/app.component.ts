@@ -1,10 +1,6 @@
 import { NavController, Platform, ViewController } from 'ionic-angular';
 
 import { Component, ViewChild } from '@angular/core';
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -21,7 +17,6 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private nativeTransitions: NativePageTransitions,
   ) {
     platform.ready().then(() => {
       statusBar.styleDefault();
@@ -43,14 +38,6 @@ export class MyApp {
 
     if (this.nav.getActive().instance instanceof HomePage)
       activePageName = 'HomePage';
-
-    let options: NativeTransitionOptions = {
-      direction: 'left',
-      duration: 400,
-      slowdownfactor: 3,
-    };
-
-    this.nativeTransitions.slide(options);
 
     if (activePageName != page) {
       if (page == 'HomePage') {

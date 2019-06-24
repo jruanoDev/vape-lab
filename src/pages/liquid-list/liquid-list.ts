@@ -8,17 +8,14 @@ import {
   Platform,
   ToastController,
 } from 'ionic-angular';
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions';
 
-import { CalculatorProvider } from '../../providers/calculator/calculator';
-import { Calendar } from '@ionic-native/calendar';
 import { Component } from '@angular/core';
-import { LiquidProvider } from '../../providers/liquid/liquid';
+import { Calendar } from '@ionic-native/calendar';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Vibration } from '@ionic-native/vibration';
+
+import { CalculatorProvider } from '../../providers/calculator/calculator';
+import { LiquidProvider } from '../../providers/liquid/liquid';
 
 @IonicPage()
 @Component({
@@ -40,17 +37,11 @@ export class LiquidListPage {
     private calcProvider: CalculatorProvider,
     private modalCtrl: ModalController,
     private calendar: Calendar,
-    private nativeTransitions: NativePageTransitions,
     private toastCtrl: ToastController,
     platform: Platform,
   ) {
     platform.registerBackButtonAction(() => {
-      let options: NativeTransitionOptions = {
-        direction: 'right',
-        duration: 300,
-      };
       navCtrl.pop({ animate: false });
-      this.nativeTransitions.slide(options);
     });
   }
 

@@ -8,10 +8,6 @@ import {
 } from 'ionic-angular';
 
 import { Component } from '@angular/core';
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions';
 
 import { Flavour } from '../../models/Flavour';
 import { FlavourProvider } from '../../providers/flavour/flavour';
@@ -42,7 +38,6 @@ export class AddFlavourModalPage {
     public viewCtrl: ViewController,
     public alertCtrl: AlertController,
     private flavourProvider: FlavourProvider,
-    private nativeTransitions: NativePageTransitions,
     private toastCtrl: ToastController,
   ) {}
 
@@ -64,15 +59,6 @@ export class AddFlavourModalPage {
 
       this.staticFlavourName = flavourTemp.name;
     }
-  }
-
-  ionViewWillLeave() {
-    let options: NativeTransitionOptions = {
-      direction: 'down',
-      duration: 250,
-    };
-
-    this.nativeTransitions.slide(options);
   }
 
   setEditValues(flavour) {

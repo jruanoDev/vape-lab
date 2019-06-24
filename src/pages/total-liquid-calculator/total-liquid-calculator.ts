@@ -7,15 +7,12 @@ import {
   Platform,
   ToastController,
 } from 'ionic-angular';
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions';
 
-import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { Component } from '@angular/core';
+
 import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
+import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { LiquidProvider } from '../../providers/liquid/liquid';
 
 @IonicPage()
@@ -46,21 +43,10 @@ export class TotalLiquidCalculatorPage {
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     private liquidProvider: LiquidProvider,
-    private nativeTransitions: NativePageTransitions,
     private calcProvider: CalculatorProvider,
     private toastCtrl: ToastController,
     private platform: Platform,
-  ) {
-    platform.registerBackButtonAction(() => {
-      let options: NativeTransitionOptions = {
-        direction: 'right',
-        duration: 300,
-      };
-
-      navCtrl.pop({ animate: false });
-      this.nativeTransitions.slide(options);
-    });
-  }
+  ) {}
 
   // check if user comes from home screen or from edit option
   ionViewDidLoad() {
@@ -133,13 +119,6 @@ export class TotalLiquidCalculatorPage {
   // open modal to create new flavour
   onAddFlavourClick() {
     let modal = this.modalCtrl.create('AddFlavourModalPage');
-
-    let options: NativeTransitionOptions = {
-      direction: 'up',
-      duration: 250,
-    };
-
-    this.nativeTransitions.slide(options);
     modal.present();
 
     modal.onDidDismiss((flavour: Flavour) => {

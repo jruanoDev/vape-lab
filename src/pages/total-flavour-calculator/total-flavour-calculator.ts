@@ -4,14 +4,9 @@ import {
   ModalController,
   NavController,
   NavParams,
-  Platform,
 } from 'ionic-angular';
 
 import { Component } from '@angular/core';
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions';
 import { Storage } from '@ionic/storage';
 
 import { Flavour } from '../../models/Flavour';
@@ -46,21 +41,9 @@ export class TotalFlavourCalculatorPage {
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     private liquidProvider: LiquidProvider,
-    private nativeTransitions: NativePageTransitions,
     private calcProvider: CalculatorProvider,
     private storage: Storage,
-    private platform: Platform,
-  ) {
-    platform.registerBackButtonAction(() => {
-      let options: NativeTransitionOptions = {
-        direction: 'right',
-        duration: 300,
-      };
-
-      navCtrl.pop({ animate: false });
-      this.nativeTransitions.slide(options);
-    });
-  }
+  ) {}
 
   ionViewWillEnter() {
     this.storage
@@ -72,13 +55,6 @@ export class TotalFlavourCalculatorPage {
     let modal = this.modalCtrl.create('AddFlavourModalPage', {
       isQuantityEnabled: true,
     });
-
-    let options: NativeTransitionOptions = {
-      direction: 'up',
-      duration: 250,
-    };
-
-    this.nativeTransitions.slide(options);
     modal.present();
 
     modal.onDidDismiss((flavour: Flavour) => {

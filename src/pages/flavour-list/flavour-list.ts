@@ -5,18 +5,14 @@ import {
   ModalController,
   NavController,
   NavParams,
-  Platform,
 } from 'ionic-angular';
-import {
-  NativePageTransitions,
-  NativeTransitionOptions,
-} from '@ionic-native/native-page-transitions';
 
 import { Component } from '@angular/core';
-import { Flavour } from '../../models/Flavour';
-import { FlavourProvider } from '../../providers/flavour/flavour';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Vibration } from '@ionic-native/vibration';
+
+import { Flavour } from '../../models/Flavour';
+import { FlavourProvider } from '../../providers/flavour/flavour';
 
 @IonicPage()
 @Component({
@@ -35,20 +31,8 @@ export class FlavourListPage {
     private socialShare: SocialSharing,
     public alertCtrl: AlertController,
     private vibrateCtrl: Vibration,
-    private nativeTransitions: NativePageTransitions,
     private modalCtrl: ModalController,
-    platform: Platform,
-  ) {
-    platform.registerBackButtonAction(() => {
-      let options: NativeTransitionOptions = {
-        direction: 'right',
-        duration: 300,
-      };
-
-      navCtrl.pop({ animate: false });
-      this.nativeTransitions.slide(options);
-    });
-  }
+  ) {}
 
   ionViewDidLoad() {
     this.getFlavours();
@@ -151,13 +135,6 @@ export class FlavourListPage {
     let modal = this.modalCtrl.create('AddFlavourModalPage', {
       isCreationScreen: true,
     });
-
-    let options: NativeTransitionOptions = {
-      direction: 'up',
-      duration: 250,
-    };
-
-    this.nativeTransitions.slide(options);
     modal.present();
 
     modal.onDidDismiss((flavour: Flavour) => {
