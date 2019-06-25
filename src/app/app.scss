@@ -75,9 +75,6 @@ ion-select {
 }
 
 .toast-wrapper {
-  bottom: 20px !important;
-  max-width: 320px !important;
-  border-radius: 5px !important;
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
   background: $color-white !important;
   .toast-message {

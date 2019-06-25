@@ -50,15 +50,6 @@ export class TotalLiquidCalculatorPage {
 
   // check if user comes from home screen or from edit option
   ionViewDidLoad() {
-    /* setInterval(() => {
-      this.toastCtrl
-            .create({
-              message: 'No se pudo actualizar el líquido',
-              duration: 3000,
-            })
-            .present();
-    }, 5000); */
-
     if (this.navParams.get('isEditScreen') === true) this.isEditScreen = true;
     if (this.navParams.get('saveDefault') === true)
       this.saveToRecipeList = true;
@@ -153,6 +144,7 @@ export class TotalLiquidCalculatorPage {
       this.liquid.nicokitPG = 100 - this.nicokitProportion;
       this.liquid.nicokitVG = this.nicokitProportion;
       this.liquid.flavours = this.flavours;
+      this.liquid.nicokitProportion = this.nicokitProportion;
       this.liquid.totalQuantity = parseInt(this.liquidQuantity);
 
       if (this.saveToRecipeList) {

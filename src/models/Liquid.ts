@@ -5,6 +5,7 @@ export class Liquid {
     basePG:number;
     totalQuantity:number;
     totalNicotine:number;
+    nicokitProportion:number;
     nicokitConcentration:number;
     nicokitVG:number;
     nicokitPG:number;

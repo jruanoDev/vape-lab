@@ -24,6 +24,8 @@ export class CalculatorProvider {
     let totalFlavourMl = 0;
     let flavourMl = 0;
     let totalCalc = 0;
+    let nicokitPG = 0;
+    let nicokitVG = 0;
 
     if (liquid.totalNicotine == 0) nicotineInLiquid = false;
 
@@ -43,11 +45,17 @@ export class CalculatorProvider {
       });
     });
 
-    totalBase = this.roundTwoDecimals(
-      liquid.totalQuantity - nicotineMl - totalFlavourMl,
+    totalBase = this.roundTwoDecimals(liquid.totalQuantity - totalFlavourMl);
+
+    nicokitVG = this.roundTwoDecimals(
+      (liquid.nicokitProportion * nicotineMl) / 100,
     );
-    totalBasePG = this.roundTwoDecimals((liquid.basePG * totalBase) / 100);
-    totalBaseVG = this.roundTwoDecimals((liquid.baseVG * totalBase) / 100);
+    nicokitPG = this.roundTwoDecimals(nicotineMl - nicokitVG);
+
+    totalBasePG =
+      this.roundTwoDecimals((liquid.basePG * totalBase) / 100) - nicokitPG;
+    totalBaseVG =
+      this.roundTwoDecimals((liquid.baseVG * totalBase) / 100) - nicokitVG;
 
     totalCalc = nicotineMl + totalFlavourMl;
 
