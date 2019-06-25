@@ -18,6 +18,13 @@ ion-header::after {
   background-image: none !important;
 }
 
+.animated-header {
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
 // remove grey dot on menu button
 .scroll-content {
   overflow-y: auto;
@@ -146,6 +153,7 @@ ion-menu {
 }
 
 ion-navbar {
+  background-color: white;
   ion-title {
     font-family: $main-font;
   }

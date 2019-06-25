@@ -9,6 +9,7 @@ import {
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
+import { ScrollHideConfig } from '../../directives/scroll-hide/scroll-hide';
 import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
 import { CalculatorProvider } from '../../providers/calculator/calculator';
@@ -32,6 +33,11 @@ export class TotalFlavourCalculatorPage {
 
   // Flags
   showMessage: boolean = true;
+
+  headerScrollOptions: ScrollHideConfig = {
+    cssProperty: 'margin-top',
+    maxValue: 60,
+  };
 
   results: any;
 
