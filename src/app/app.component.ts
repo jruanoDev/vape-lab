@@ -1,10 +1,14 @@
 import { NavController, Platform, ViewController } from 'ionic-angular';
 
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, enableProdMode } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { environment } from '../config';
 import { HomePage } from '../pages/home/home';
+
+// Checkeamos si estamos en estado de producción
+if (environment.production) enableProdMode();
 
 @Component({
   templateUrl: 'app.html',
