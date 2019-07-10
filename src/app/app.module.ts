@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { DirectivesModule } from '../directives/directives.module';
 import { HomePage } from '../pages/home/home';
 import { CalculatorProvider } from '../providers/calculator/calculator';
 import { FlavourProvider } from '../providers/flavour/flavour';
@@ -17,6 +18,7 @@ import { MyApp } from './app.component';
   declarations: [MyApp, HomePage],
   imports: [
     BrowserModule,
+    DirectivesModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
       name: 'vapeBookDB',

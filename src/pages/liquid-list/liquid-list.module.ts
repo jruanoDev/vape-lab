@@ -1,23 +1,22 @@
-import { Calendar } from '@ionic-native/calendar';
 import { IonicPageModule } from 'ionic-angular';
-import { LiquidListPage } from './liquid-list';
 import { LongPressModule } from 'ionic-long-press';
-import { NgModule } from '@angular/core';
+
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { Calendar } from '@ionic-native/calendar';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Vibration } from '@ionic-native/vibration';
 
+import { DirectivesModule } from '../../directives/directives.module';
+import { LiquidListPage } from './liquid-list';
+
 @NgModule({
-  declarations: [
-    LiquidListPage,
-  ],
+  declarations: [LiquidListPage],
   imports: [
+    DirectivesModule,
     IonicPageModule.forChild(LiquidListPage),
-    LongPressModule
+    LongPressModule,
   ],
-  providers: [
-    Vibration,
-    SocialSharing,
-    Calendar
-  ]
+  providers: [Vibration, SocialSharing, Calendar],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class LiquidListPageModule {}

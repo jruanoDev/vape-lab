@@ -10,6 +10,7 @@ import {
 
 import { Component } from '@angular/core';
 
+import { ScrollHideConfig } from '../../directives/scroll-hide/scroll-hide';
 import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
 import { CalculatorProvider } from '../../providers/calculator/calculator';
@@ -32,6 +33,11 @@ export class TotalLiquidCalculatorPage {
   flavours: Array<Flavour> = [];
   saveToRecipeList: boolean = false;
 
+  headerScrollOptions: ScrollHideConfig = {
+    cssProperty: 'margin-top',
+    maxValue: 60,
+  };
+
   // Flags
   isEditScreen: boolean = false;
 
@@ -45,7 +51,6 @@ export class TotalLiquidCalculatorPage {
     private liquidProvider: LiquidProvider,
     private calcProvider: CalculatorProvider,
     private toastCtrl: ToastController,
-    private platform: Platform,
   ) {}
 
   // check if user comes from home screen or from edit option

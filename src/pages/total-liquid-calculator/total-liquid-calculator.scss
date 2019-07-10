@@ -1,82 +1,82 @@
 page-total-liquid-calculator {
-    .scroll-content {
-        padding: 40px 30px 0 30px !important;
-        section {
-            margin-bottom: 30px;
-            transition: all .3s ease-in-out;
-            ion-checkbox {
-                margin-right: 10px;
-                vertical-align: text-top;
-            }
-            h6 {
-                margin: 0;
-                display: inline-block;
-            }
-        }
+  .scroll-content {
+    padding: 72px 30px 0 30px !important;
+    section {
+      margin-bottom: 30px;
+      transition: all 0.3s ease-in-out;
+      ion-checkbox {
+        margin-right: 10px;
+        vertical-align: text-top;
+      }
+      h6 {
+        margin: 0;
+        display: inline-block;
+      }
+    }
+    h5 {
+      font-family: $main-font;
+    }
+    ion-range {
+      padding-top: 0 !important;
+    }
+    input {
+      text-align: center;
+    }
+    .nicokit-proportion {
+      margin-top: 20px;
+    }
+    .flavours-section {
+      .flavours-section-header {
+        display: inline-block;
+        width: 100%;
         h5 {
-            font-family: $main-font;
+          float: left;
         }
-        ion-range {
-            padding-top: 0 !important;
+        a {
+          float: right;
+          padding-top: 0;
         }
-        input {
-            text-align: center;
+      }
+      p {
+        display: block;
+        width: 100%;
+      }
+      h6 {
+        font-weight: 100;
+        color: $color-grey;
+      }
+      ul {
+        list-style: none;
+        position: relative;
+        padding-left: 5px;
+        li div {
+          display: inline-block;
+          max-width: 70%;
+          h5 {
+            margin-bottom: 0;
+          }
+          h6 {
+            margin-bottom: 0;
+            margin-top: 7px;
+          }
         }
-        .nicokit-proportion {
-            margin-top: 20px;
+        button {
+          right: 0;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: transparent;
+          ion-icon {
+            font-size: 23px;
+            color: $color-grey;
+          }
         }
-        .flavours-section {
-            .flavours-section-header {
-                display: inline-block;
-                width: 100%;
-                h5 {
-                    float: left;
-                }
-                a {
-                    float: right;
-                    padding-top: 0;
-                }
-            }
-            p {
-                display: block;
-                width: 100%;
-            }
-            h6 {
-                font-weight: 100;
-                color: $color-grey;
-            }
-            ul {
-                list-style: none;
-                position: relative;
-                padding-left: 5px;
-                li div {
-                    display: inline-block;
-                    max-width: 70%;
-                    h5 {
-                        margin-bottom: 0;
-                    }
-                    h6 {
-                        margin-bottom: 0;
-                        margin-top: 7px;
-                    }
-                }
-                button {
-                    right: 0;
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    background: transparent;
-                    ion-icon {
-                        font-size: 23px;
-                        color: $color-grey;
-                    }
-                }
-            }
-        }
+      }
     }
-    .disabled {
-        opacity: .3;
-        pointer-events: none;
-        transition: opacity .3s ease-in-out;
-    }
+  }
+  .disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
 }

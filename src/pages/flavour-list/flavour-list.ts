@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Vibration } from '@ionic-native/vibration';
 
+import { ScrollHideConfig } from '../../directives/scroll-hide/scroll-hide';
 import { Flavour } from '../../models/Flavour';
 import { FlavourProvider } from '../../providers/flavour/flavour';
 
@@ -22,6 +23,11 @@ import { FlavourProvider } from '../../providers/flavour/flavour';
 export class FlavourListPage {
   public flavours = [];
   check = true;
+
+  headerScrollOptions: ScrollHideConfig = {
+    cssProperty: 'margin-top',
+    maxValue: 60,
+  };
 
   constructor(
     public navCtrl: NavController,

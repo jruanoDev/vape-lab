@@ -1,11 +1,15 @@
-<ion-header>
+<ion-header
+  [scrollHide]="headerScrollOptions"
+  [scrollContent]="pageContent"
+  class="animated-header"
+>
   <ion-navbar color="transparent">
     <ion-title *ngIf="!isEditScreen">Calculadora (Líquido)</ion-title>
     <ion-title *ngIf="isEditScreen">Editar {{ liquid.name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding #pageContent fullscreen>
   <section>
     <h5>Cantidad de líquido (ml)</h5>
     <input

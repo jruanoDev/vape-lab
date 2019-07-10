@@ -41,9 +41,9 @@ export class MyApp {
 
     if (activePageName != page) {
       if (page == 'HomePage') {
-        this.nav.push(HomePage, null, { animate: false });
+        this.nav.push(HomePage, null);
       } else {
-        this.nav.push(page, null, { animate: false }).then(() => {
+        this.nav.push(page, null).then(() => {
           this.removePreviousView();
         });
       }

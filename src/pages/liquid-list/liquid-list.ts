@@ -14,6 +14,7 @@ import { Calendar } from '@ionic-native/calendar';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Vibration } from '@ionic-native/vibration';
 
+import { ScrollHideConfig } from '../../directives/scroll-hide/scroll-hide';
 import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { LiquidProvider } from '../../providers/liquid/liquid';
 
@@ -25,6 +26,11 @@ import { LiquidProvider } from '../../providers/liquid/liquid';
 export class LiquidListPage {
   public liquids = [];
   check = true;
+
+  headerScrollOptions: ScrollHideConfig = {
+    cssProperty: 'margin-top',
+    maxValue: 60,
+  };
 
   constructor(
     public navCtrl: NavController,
@@ -41,7 +47,7 @@ export class LiquidListPage {
     platform: Platform,
   ) {
     platform.registerBackButtonAction(() => {
-      navCtrl.pop({ animate: false });
+      navCtrl.pop();
     });
   }
 

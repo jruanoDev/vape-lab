@@ -1,4 +1,8 @@
-<ion-header>
+<ion-header
+  [scrollHide]="headerScrollOptions"
+  [scrollContent]="pageContent"
+  class="animated-header"
+>
   <ion-navbar hideBackButton color="transparent">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -6,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding #pageContent>
   <h1 class="page-title">Tus aromas</h1>
 
   <ion-list *ngIf="flavours.length > 0">
