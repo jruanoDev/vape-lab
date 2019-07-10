@@ -1,7 +1,14 @@
-import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import {
+  AlertController,
+  IonicPage,
+  NavController,
+  NavParams,
+  ToastController,
+} from 'ionic-angular';
 
-import { Calendar } from '@ionic-native/calendar';
 import { Component } from '@angular/core';
+import { Calendar } from '@ionic-native/calendar';
+
 import { Liquid } from '../../models/Liquid';
 import { LiquidProvider } from '../../providers/liquid/liquid';
 
@@ -10,98 +17,124 @@ import { LiquidProvider } from '../../providers/liquid/liquid';
   selector: 'page-add-maceration-reminder',
   templateUrl: 'add-maceration-reminder.html',
 })
-
 export class AddMacerationReminderPage {
-  countSinceCreationDay: string = "true";
-  macerationDays: string = "";
+  countSinceCreationDay: string = 'true';
+  macerationDays: string = '';
   liquid: Liquid;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private calendar: Calendar,
-              private toastCtrl: ToastController,
-              private alertCtrl: AlertController,
-              private liquidsProvider: LiquidProvider) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private calendar: Calendar,
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
+    private liquidsProvider: LiquidProvider,
+  ) {}
 
   ionViewDidLoad() {
     this.liquid = this.navParams.get('liquid');
   }
 
   addMacerationReminder() {
-    if(this.setUpCalendarPermissions() && this.checkForErrors()) {
+    if (this.setUpCalendarPermissions() && this.checkForErrors()) {
       let reminderDate = this.getReminderDate();
-
-      console.log(reminderDate);
 
       let options = this.calendar.getCalendarOptions();
       options.firstReminderMinutes = 1440;
 
-      this.calendar.createEventWithOptions('Fin de maceración de ' + this.liquid.name,
-        null, null, reminderDate, reminderDate, options)
-        .then((data) => {
+      this.calendar
+        .createEventWithOptions(
+          'Fin de maceración de ' + this.liquid.name,
+          null,
+          null,
+          reminderDate,
+          reminderDate,
+          options,
+        )
+        .then(() => {
           let tempLiquid = this.liquid;
           tempLiquid.reminderAddedAt = reminderDate;
 
           this.liquidsProvider.updateLiquid(this.liquid, tempLiquid);
-          
+
           let toast = this.toastCtrl.create({
             message: 'Recordatorio añadido correctamente',
             duration: 3000,
-            position: 'bottom'
+            position: 'bottom',
           });
-      
+
           toast.present();
           this.navCtrl.pop();
-        }).catch((err) => console.log(err));
+        })
+        .catch(() => {
+          let toast = this.toastCtrl.create({
+            message: 'Hubo un error al añadir el recordatorio',
+            duration: 3000,
+            position: 'bottom',
+          });
+          toast.present();
+        });
     } else {
-      this.alertCtrl.create({
-        title: 'Error',
-        message: 'Debes introducir los días de maceración y aceptar los permisos para continuar',
-        buttons: ['OK']
-      }).present();
+      this.alertCtrl
+        .create({
+          title: 'Error',
+          message:
+            'Debes introducir los días de maceración y aceptar los permisos para continuar',
+          buttons: ['OK'],
+        })
+        .present();
     }
   }
 
   dissmiss() {
-    this.navCtrl.pop(); 
+    this.navCtrl.pop();
   }
 
   setUpCalendarPermissions() {
     let check = true;
 
-    this.calendar.hasReadWritePermission().then((data) => {
-      if(!data) {
-        this.calendar.requestReadWritePermission()
-        .then(() => {
-          this.addMacerationReminder();
-        })
-        .catch(() => {
-          check = false;
-        });
-      }
-    }).catch((err) => {
-      check = false;
-    });
+    this.calendar
+      .hasReadWritePermission()
+      .then((data) => {
+        if (!data) {
+          this.calendar
+            .requestReadWritePermission()
+            .then(() => {
+              this.addMacerationReminder();
+            })
+            .catch(() => {
+              check = false;
+            });
+        }
+      })
+      .catch((err) => {
+        check = false;
+      });
 
     return check;
   }
 
   checkForErrors() {
     let numberCheck = new RegExp('^[0-9]+$');
-    if(numberCheck.test(this.macerationDays)) 
-      return true;
+    if (numberCheck.test(this.macerationDays)) return true;
 
     return false;
   }
 
   getReminderDate() {
-    let check = (this.countSinceCreationDay === 'true');
+    let check = this.countSinceCreationDay === 'true';
     let reminderDate: Date;
-    
-    if(check) {
-      reminderDate = this.sumDaysToDate(new Date(this.liquid.createdAt), parseInt(this.macerationDays));
+
+    if (check) {
+      reminderDate = this.sumDaysToDate(
+        new Date(this.liquid.createdAt),
+        parseInt(this.macerationDays),
+      );
     } else {
-      reminderDate = this.sumDaysToDate(new Date(), parseInt(this.macerationDays));
+      reminderDate = this.sumDaysToDate(
+        new Date(),
+        parseInt(this.macerationDays),
+      );
     }
 
     return reminderDate;
@@ -110,8 +143,7 @@ export class AddMacerationReminderPage {
   sumDaysToDate(date: Date, days) {
     let tempDate = date;
     tempDate.setDate(tempDate.getDate() + days);
-    
+
     return tempDate;
   }
-
 }
