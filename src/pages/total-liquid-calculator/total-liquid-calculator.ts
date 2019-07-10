@@ -4,7 +4,6 @@ import {
   ModalController,
   NavController,
   NavParams,
-  Platform,
   ToastController,
 } from 'ionic-angular';
 
