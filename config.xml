@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.github.jruanodev" version="0.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Vape Lab</name>
+    <name>VapeLab</name>
     <description>Aplicación para realizar cálculos de alquimia para líquidos de vapeo</description>
     <author email="jruanogalvez@gmail.com" href="http://github.com/jruanoDev">Jose María Ruano Gálvez</author>
     <content src="index.html" />
@@ -20,6 +20,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="orientation" value="portrait" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
