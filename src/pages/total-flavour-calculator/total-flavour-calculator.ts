@@ -14,6 +14,7 @@ import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
 import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { LiquidProvider } from '../../providers/liquid/liquid';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
@@ -49,6 +50,7 @@ export class TotalFlavourCalculatorPage {
     private liquidProvider: LiquidProvider,
     private calcProvider: CalculatorProvider,
     private storage: Storage,
+    private utilsProvider: UtilsProvider,
   ) {}
 
   ionViewWillEnter() {
@@ -61,7 +63,7 @@ export class TotalFlavourCalculatorPage {
     let modal = this.modalCtrl.create('AddFlavourModalPage', {
       isQuantityEnabled: true,
     });
-    modal.present();
+    modal.present().then(() => this.utilsProvider.subscribeOnce(modal));
 
     modal.onDidDismiss((flavour: Flavour) => {
       if (flavour) this.flavours.push(flavour);
@@ -80,7 +82,9 @@ export class TotalFlavourCalculatorPage {
       nicotineInLiquid: this.results.nicotineInLiquid,
       title: '¡Aquí tienes tu nuevo e-liquid!',
     });
-    resultsModal.present();
+    resultsModal
+      .present()
+      .then(() => this.utilsProvider.subscribeOnce(resultsModal));
   }
 
   dissmissFlavourMessage() {

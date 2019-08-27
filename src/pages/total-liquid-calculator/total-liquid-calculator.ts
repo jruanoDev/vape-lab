@@ -14,6 +14,7 @@ import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
 import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { LiquidProvider } from '../../providers/liquid/liquid';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
@@ -50,6 +51,7 @@ export class TotalLiquidCalculatorPage {
     private liquidProvider: LiquidProvider,
     private calcProvider: CalculatorProvider,
     private toastCtrl: ToastController,
+    private utilsProvider: UtilsProvider,
   ) {}
 
   // check if user comes from home screen or from edit option
@@ -114,7 +116,7 @@ export class TotalLiquidCalculatorPage {
   // open modal to create new flavour
   onAddFlavourClick() {
     let modal = this.modalCtrl.create('AddFlavourModalPage');
-    modal.present();
+    modal.present().then(() => this.utilsProvider.subscribeOnce(modal));
 
     modal.onDidDismiss((flavour: Flavour) => {
       if (flavour) this.flavours.push(flavour);
@@ -134,7 +136,9 @@ export class TotalLiquidCalculatorPage {
       nicotineInLiquid: this.results.nicotineInLiquid,
       title: '¡Aquí tienes tu nuevo e-liquid!',
     });
-    resultsModal.present();
+    resultsModal
+      .present()
+      .then(() => this.utilsProvider.subscribeOnce(resultsModal));
   }
 
   // create the liquid object (creation on top of file) and process saving
@@ -196,10 +200,6 @@ export class TotalLiquidCalculatorPage {
     } else {
       this.openResultsModal();
     }
-  }
-
-  resetNicotine() {
-    console.log('pazaloco');
   }
 
   // check for invalid data, empty quantity, no flavours, etc

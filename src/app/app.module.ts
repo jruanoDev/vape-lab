@@ -13,6 +13,7 @@ import { FlavourProvider } from '../providers/flavour/flavour';
 import { LiquidProvider } from '../providers/liquid/liquid';
 import { StorageProvider } from '../providers/storage/storage';
 import { MyApp } from './app.component';
+import { UtilsProvider } from '../providers/utils/utils';
 
 @NgModule({
   declarations: [MyApp, HomePage],
@@ -35,6 +36,7 @@ import { MyApp } from './app.component';
     FlavourProvider,
     LiquidProvider,
     CalculatorProvider,
+    UtilsProvider,
   ],
 })
 export class AppModule {}
