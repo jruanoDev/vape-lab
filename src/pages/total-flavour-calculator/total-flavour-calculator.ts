@@ -25,7 +25,7 @@ export class TotalFlavourCalculatorPage {
 
   // Data Binding variables
   baseProportion: number = 50;
-  totalNicotine: string = '0';
+  totalNicotine: number = 0;
   nicokitConcentration: string = '10';
   nicokitProportion: number = 50;
   flavours: Array<Flavour> = [];
@@ -95,7 +95,7 @@ export class TotalFlavourCalculatorPage {
       this.liquid.name = '';
       this.liquid.baseVG = this.baseProportion;
       this.liquid.basePG = 100 - this.baseProportion;
-      this.liquid.totalNicotine = parseInt(this.totalNicotine);
+      this.liquid.totalNicotine = this.totalNicotine;
       this.liquid.nicokitConcentration = parseInt(this.nicokitConcentration);
       this.liquid.nicokitPG = 100 - this.nicokitProportion;
       this.liquid.nicokitVG = this.nicokitProportion;
@@ -156,6 +156,29 @@ export class TotalFlavourCalculatorPage {
 
       result = false;
     }
+
+    if (this.totalNicotine !== null) {
+      if (
+        !this.totalNicotine.toString().match(/^[0-9]{1,2}\.?[0-9]?$/) ||
+        this.totalNicotine > 24 ||
+        this.totalNicotine < 0
+      ) {
+        message +=
+          '<li>La cantidad de nicotina no es la correcta (mínimo 0, máximo 24)</li>';
+        errorAlert.setMessage(message);
+        errorAlert.present();
+
+        result = false;
+      }
+    } else {
+      message +=
+        '<li>La cantidad de nicotina no tiene el formato adecuado</li>';
+      errorAlert.setMessage(message);
+      errorAlert.present();
+
+      result = false;
+    }
+
     message += '</ul>';
 
     return result;

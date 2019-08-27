@@ -7,12 +7,12 @@
 
     <div class="base-quantity">
       <h6>VG</h6>
-      <h5>{{ totalBaseVG }} ml</h5>
+      <h5>{{ totalBaseVG.toFixed(2) }} ml</h5>
     </div>
 
     <div class="base-quantity">
       <h6>PG</h6>
-      <h5>{{ totalBasePG }} ml</h5>
+      <h5>{{ totalBasePG.toFixed(2) }} ml</h5>
     </div>
   </section>
 
@@ -33,10 +33,14 @@
     <ul class="flavour-quantity">
       <li *ngFor="let item of mlFlavourList">
         <h6>{{ item.flavour.name }}</h6>
-        <h5>{{ item.quantity }} ml</h5>
+        <h5>{{ item.quantity.toFixed(2) }} ml</h5>
       </li>
     </ul>
   </section>
+
+  <div class="divider-tall"></div>
 </ion-content>
 
-<button class="close-button" (click)="closeModal()"><ion-icon name="close"></ion-icon></button>
+<button class="close-button" (click)="closeModal()">
+  <ion-icon name="close"></ion-icon>
+</button>

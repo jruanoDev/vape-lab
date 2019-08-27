@@ -26,7 +26,7 @@ export class TotalLiquidCalculatorPage {
   // Data Binding variables
   liquidQuantity: string;
   baseProportion: number = 50;
-  totalNicotine: string = '0';
+  totalNicotine: any = 0;
   nicokitConcentration: string = '10';
   nicokitProportion: number = 50;
   flavours: Array<Flavour> = [];
@@ -68,7 +68,7 @@ export class TotalLiquidCalculatorPage {
 
     this.liquidQuantity = '' + liquid.totalQuantity;
     this.baseProportion = liquid.baseVG;
-    this.totalNicotine = '' + liquid.totalNicotine;
+    this.totalNicotine = liquid.totalNicotine;
     this.nicokitConcentration = '' + liquid.nicokitConcentration;
     this.nicokitProportion = liquid.nicokitVG;
     this.flavours = liquid.flavours;
@@ -81,7 +81,7 @@ export class TotalLiquidCalculatorPage {
     if (this.checkForErrors()) {
       tempLiquid.baseVG = this.baseProportion;
       tempLiquid.basePG = 100 - this.baseProportion;
-      tempLiquid.totalNicotine = parseInt(this.totalNicotine);
+      tempLiquid.totalNicotine = this.totalNicotine;
       tempLiquid.nicokitConcentration = parseInt(this.nicokitConcentration);
       tempLiquid.nicokitPG = 100 - this.nicokitProportion;
       tempLiquid.nicokitVG = this.nicokitProportion;
@@ -143,7 +143,7 @@ export class TotalLiquidCalculatorPage {
       this.liquid.name = '';
       this.liquid.baseVG = this.baseProportion;
       this.liquid.basePG = 100 - this.baseProportion;
-      this.liquid.totalNicotine = parseInt(this.totalNicotine);
+      this.liquid.totalNicotine = this.totalNicotine;
       this.liquid.nicokitConcentration = parseInt(this.nicokitConcentration);
       this.liquid.nicokitPG = 100 - this.nicokitProportion;
       this.liquid.nicokitVG = this.nicokitProportion;
@@ -198,6 +198,10 @@ export class TotalLiquidCalculatorPage {
     }
   }
 
+  resetNicotine() {
+    console.log('pazaloco');
+  }
+
   // check for invalid data, empty quantity, no flavours, etc
   checkForErrors() {
     let quantity = parseInt(this.liquidQuantity);
@@ -220,6 +224,28 @@ export class TotalLiquidCalculatorPage {
     if (this.flavours.length <= 0) {
       message +=
         '<li>Tienes que añadir algún aroma antes de calcular un líquido</li>';
+      errorAlert.setMessage(message);
+      errorAlert.present();
+
+      result = false;
+    }
+
+    if (this.totalNicotine !== null) {
+      if (
+        !this.totalNicotine.toString().match(/^[0-9]{1,2}\.?[0-9]?$/) ||
+        this.totalNicotine > 24 ||
+        this.totalNicotine < 0
+      ) {
+        message +=
+          '<li>La cantidad de nicotina no es la correcta (mínimo 0, máximo 24)</li>';
+        errorAlert.setMessage(message);
+        errorAlert.present();
+
+        result = false;
+      }
+    } else {
+      message +=
+        '<li>La cantidad de nicotina no tiene el formato adecuado</li>';
       errorAlert.setMessage(message);
       errorAlert.present();
 
