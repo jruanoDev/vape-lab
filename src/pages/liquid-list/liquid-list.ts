@@ -17,6 +17,7 @@ import { Vibration } from '@ionic-native/vibration';
 import { ScrollHideConfig } from '../../directives/scroll-hide/scroll-hide';
 import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { LiquidProvider } from '../../providers/liquid/liquid';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
@@ -45,6 +46,7 @@ export class LiquidListPage {
     private calendar: Calendar,
     private toastCtrl: ToastController,
     platform: Platform,
+    private utilsProvider: UtilsProvider,
   ) {
     platform.registerBackButtonAction(() => {
       navCtrl.pop();
@@ -222,7 +224,9 @@ export class LiquidListPage {
       nicotineInLiquid: results.nicotineInLiquid,
       title: liquid.name,
     });
-    resultsModal.present();
+    resultsModal
+      .present()
+      .then(() => this.utilsProvider.subscribeOnce(resultsModal));
   }
 
   openPage(page, options = null) {

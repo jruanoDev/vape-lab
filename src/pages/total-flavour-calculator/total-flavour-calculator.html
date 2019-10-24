@@ -68,17 +68,7 @@
 
   <section>
     <h5>Nicotina final (mg/ml)</h5>
-    <ion-item>
-      <ion-label>Nicotina total</ion-label>
-      <ion-select [(ngModel)]="totalNicotine" interface="popover">
-        <ion-option value="0">Sin nicotina</ion-option>
-        <ion-option value="3">3 mg/ml</ion-option>
-        <ion-option value="6">6 mg/ml</ion-option>
-        <ion-option value="12">12 mg/ml</ion-option>
-        <ion-option value="16">16 mg/ml</ion-option>
-        <ion-option value="24">24 mg/ml</ion-option>
-      </ion-select>
-    </ion-item>
+    <input type="number" placeholder="mg/ml" [(ngModel)]="totalNicotine" />
   </section>
 
   <section [ngClass]="{ disabled: totalNicotine === '0' }">
