@@ -62,6 +62,9 @@ export class TotalLiquidCalculatorPage {
 
     let liquidToEdit = this.navParams.get('liquidToEdit');
     if (liquidToEdit) this.setEditValues(liquidToEdit);
+
+    // check load count and shows rating modal
+    this.utilsProvider.showRatingAlert();
   }
 
   // fill inputs with data from params
