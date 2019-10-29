@@ -14,6 +14,7 @@ import { Flavour } from '../../models/Flavour';
 import { Liquid } from '../../models/Liquid';
 import { CalculatorProvider } from '../../providers/calculator/calculator';
 import { LiquidProvider } from '../../providers/liquid/liquid';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
@@ -26,7 +27,7 @@ export class TotalLiquidCalculatorPage {
   // Data Binding variables
   liquidQuantity: string;
   baseProportion: number = 50;
-  totalNicotine: string = '0';
+  totalNicotine: any = 0;
   nicokitConcentration: string = '10';
   nicokitProportion: number = 50;
   flavours: Array<Flavour> = [];
@@ -50,6 +51,7 @@ export class TotalLiquidCalculatorPage {
     private liquidProvider: LiquidProvider,
     private calcProvider: CalculatorProvider,
     private toastCtrl: ToastController,
+    private utilsProvider: UtilsProvider,
   ) {}
 
   // check if user comes from home screen or from edit option
@@ -60,6 +62,9 @@ export class TotalLiquidCalculatorPage {
 
     let liquidToEdit = this.navParams.get('liquidToEdit');
     if (liquidToEdit) this.setEditValues(liquidToEdit);
+
+    // check load count and shows rating modal
+    this.utilsProvider.showRatingAlert();
   }
 
   // fill inputs with data from params
@@ -68,7 +73,7 @@ export class TotalLiquidCalculatorPage {
 
     this.liquidQuantity = '' + liquid.totalQuantity;
     this.baseProportion = liquid.baseVG;
-    this.totalNicotine = '' + liquid.totalNicotine;
+    this.totalNicotine = liquid.totalNicotine;
     this.nicokitConcentration = '' + liquid.nicokitConcentration;
     this.nicokitProportion = liquid.nicokitVG;
     this.flavours = liquid.flavours;
@@ -81,7 +86,7 @@ export class TotalLiquidCalculatorPage {
     if (this.checkForErrors()) {
       tempLiquid.baseVG = this.baseProportion;
       tempLiquid.basePG = 100 - this.baseProportion;
-      tempLiquid.totalNicotine = parseInt(this.totalNicotine);
+      tempLiquid.totalNicotine = this.totalNicotine;
       tempLiquid.nicokitConcentration = parseInt(this.nicokitConcentration);
       tempLiquid.nicokitPG = 100 - this.nicokitProportion;
       tempLiquid.nicokitVG = this.nicokitProportion;
@@ -114,7 +119,7 @@ export class TotalLiquidCalculatorPage {
   // open modal to create new flavour
   onAddFlavourClick() {
     let modal = this.modalCtrl.create('AddFlavourModalPage');
-    modal.present();
+    modal.present().then(() => this.utilsProvider.subscribeOnce(modal));
 
     modal.onDidDismiss((flavour: Flavour) => {
       if (flavour) this.flavours.push(flavour);
@@ -134,7 +139,9 @@ export class TotalLiquidCalculatorPage {
       nicotineInLiquid: this.results.nicotineInLiquid,
       title: '¡Aquí tienes tu nuevo e-liquid!',
     });
-    resultsModal.present();
+    resultsModal
+      .present()
+      .then(() => this.utilsProvider.subscribeOnce(resultsModal));
   }
 
   // create the liquid object (creation on top of file) and process saving
@@ -143,7 +150,7 @@ export class TotalLiquidCalculatorPage {
       this.liquid.name = '';
       this.liquid.baseVG = this.baseProportion;
       this.liquid.basePG = 100 - this.baseProportion;
-      this.liquid.totalNicotine = parseInt(this.totalNicotine);
+      this.liquid.totalNicotine = this.totalNicotine;
       this.liquid.nicokitConcentration = parseInt(this.nicokitConcentration);
       this.liquid.nicokitPG = 100 - this.nicokitProportion;
       this.liquid.nicokitVG = this.nicokitProportion;
@@ -220,6 +227,28 @@ export class TotalLiquidCalculatorPage {
     if (this.flavours.length <= 0) {
       message +=
         '<li>Tienes que añadir algún aroma antes de calcular un líquido</li>';
+      errorAlert.setMessage(message);
+      errorAlert.present();
+
+      result = false;
+    }
+
+    if (this.totalNicotine !== null) {
+      if (
+        !this.totalNicotine.toString().match(/^[0-9]{1,2}\.?[0-9]?$/) ||
+        this.totalNicotine > 24 ||
+        this.totalNicotine < 0
+      ) {
+        message +=
+          '<li>La cantidad de nicotina no es la correcta (mínimo 0, máximo 24)</li>';
+        errorAlert.setMessage(message);
+        errorAlert.present();
+
+        result = false;
+      }
+    } else {
+      message +=
+        '<li>La cantidad de nicotina no tiene el formato adecuado</li>';
       errorAlert.setMessage(message);
       errorAlert.present();
 

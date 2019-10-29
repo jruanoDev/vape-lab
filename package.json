@@ -30,7 +30,7 @@
     "@ionic-native/status-bar": "~4.17.0",
     "@ionic-native/vibration": "^4.19.0",
     "@ionic/storage": "^2.2.0",
-    "cordova-android": "7.1.4",
+    "cordova-android": "8.1.0",
     "cordova-plugin-calendar": "5.1.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.3",

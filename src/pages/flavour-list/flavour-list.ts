@@ -14,6 +14,7 @@ import { Vibration } from '@ionic-native/vibration';
 import { ScrollHideConfig } from '../../directives/scroll-hide/scroll-hide';
 import { Flavour } from '../../models/Flavour';
 import { FlavourProvider } from '../../providers/flavour/flavour';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
@@ -38,6 +39,7 @@ export class FlavourListPage {
     public alertCtrl: AlertController,
     private vibrateCtrl: Vibration,
     private modalCtrl: ModalController,
+    private utilsProvider: UtilsProvider,
   ) {}
 
   ionViewDidLoad() {
@@ -67,7 +69,9 @@ export class FlavourListPage {
                 isEditModal: true,
               });
 
-              modal.present();
+              modal
+                .present()
+                .then(() => this.utilsProvider.subscribeOnce(modal));
               modal.onDidDismiss(() => this.getFlavours());
             },
           },
@@ -141,7 +145,7 @@ export class FlavourListPage {
     let modal = this.modalCtrl.create('AddFlavourModalPage', {
       isCreationScreen: true,
     });
-    modal.present();
+    modal.present().then(() => this.utilsProvider.subscribeOnce(modal));
 
     modal.onDidDismiss((flavour: Flavour) => {
       if (flavour) this.flavours.push(flavour);

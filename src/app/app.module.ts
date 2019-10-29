@@ -12,6 +12,7 @@ import { CalculatorProvider } from '../providers/calculator/calculator';
 import { FlavourProvider } from '../providers/flavour/flavour';
 import { LiquidProvider } from '../providers/liquid/liquid';
 import { StorageProvider } from '../providers/storage/storage';
+import { UtilsProvider } from '../providers/utils/utils';
 import { MyApp } from './app.component';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MyApp } from './app.component';
     FlavourProvider,
     LiquidProvider,
     CalculatorProvider,
+    UtilsProvider,
   ],
 })
 export class AppModule {}

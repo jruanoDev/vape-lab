@@ -13,6 +13,7 @@ export class StorageProvider {
           this.storage.set('liquids', []);
           this.storage.set('showFlavourMessage', true);
           this.storage.set('firstLaunch', true);
+          this.storage.set('ratingCount', 0);
         });
       }
     });
