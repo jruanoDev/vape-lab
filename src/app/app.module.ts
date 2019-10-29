@@ -12,8 +12,8 @@ import { CalculatorProvider } from '../providers/calculator/calculator';
 import { FlavourProvider } from '../providers/flavour/flavour';
 import { LiquidProvider } from '../providers/liquid/liquid';
 import { StorageProvider } from '../providers/storage/storage';
-import { MyApp } from './app.component';
 import { UtilsProvider } from '../providers/utils/utils';
+import { MyApp } from './app.component';
 
 @NgModule({
   declarations: [MyApp, HomePage],

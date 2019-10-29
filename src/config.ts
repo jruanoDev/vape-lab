@@ -3,5 +3,5 @@ export const environment = {
 };
 
 export const globalConfig = {
-  RATING_VIEW_INTERVAL: 3,
+  RATING_VIEW_INTERVAL: 4,
 };

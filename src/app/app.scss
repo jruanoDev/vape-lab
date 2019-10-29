@@ -312,8 +312,22 @@ p.text {
   }
 }
 
-// DIVISOR PARA ALARGAR ALTURA
-
+// DIVIDER WINDOW TALLER
 .divider-tall {
   height: 50px;
+}
+
+// RATING DIALOG
+h3.rating-title {
+  color: $color-text;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15px !important;
+}
+
+button.rating-accept {
+  background-color: $color-blue !important;
+  color: white !important;
+  font-weight: 900 !important;
+  margin-bottom: 5px !important;
 }

@@ -1,8 +1,6 @@
 import { AlertController, Modal, Platform } from 'ionic-angular';
 
 import { Injectable } from '@angular/core';
-import HttpClient from '@angular/http';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Storage } from '@ionic/storage';
 
 import { globalConfig } from '../../config';
@@ -13,7 +11,6 @@ export class UtilsProvider {
     private platform: Platform,
     private storage: Storage,
     private alertCtrl: AlertController,
-    private inAppBrowser: InAppBrowser,
   ) {}
 
   subscribeOnce(modal: Modal): void {
@@ -24,35 +21,43 @@ export class UtilsProvider {
   }
 
   showRatingAlert(): void {
-    this.incrementRatingCount();
+    this.storage
+      .get('ratingDone')
+      .then((ratingDone) => {
+        if (ratingDone !== true) {
+          this.incrementRatingCount();
 
-    this.storage.get('ratingCount').then((data) => {
-      if (data >= globalConfig.RATING_VIEW_INTERVAL) {
-        this.resetRatingCount();
+          this.storage.get('ratingCount').then((data) => {
+            if (data >= globalConfig.RATING_VIEW_INTERVAL) {
+              this.resetRatingCount();
 
-        this.alertCtrl
-          .create({
-            title: '¡Valora VapeLab!',
-            message:
-              'Tu opinión puede ayudar mucho, si quieres, puedes valorar VapeLab en Google Play, ¡sólo te llevará 1 minuto!',
-            buttons: [
-              {
-                text: 'No en este momento',
-                role: 'cancel',
-              },
-              {
-                text: '¡Valorar ahora!',
-                handler: () => {
-                  this.inAppBrowser.create(
-                    'https://play.google.com/store/apps/details?id=com.github.jruanodev',
-                  );
-                },
-              },
-            ],
-          })
-          .present();
-      }
-    });
+              this.alertCtrl
+                .create({
+                  message: `<h3 class="rating-title">Tu opinión puede ayudar mucho</h3>\nSi quieres, puedes valorar VapeLab en Google Play, <b>¡sólo te llevará 1 minuto!</b>`,
+                  buttons: [
+                    {
+                      text: 'No en este momento',
+                      role: 'cancel',
+                    },
+                    {
+                      cssClass: 'rating-accept',
+                      text: '¡Valorar ahora!',
+                      handler: () => {
+                        window.open(
+                          'https://play.google.com/store/apps/details?id=com.github.jruanodev&hl=es',
+                          '_system',
+                        );
+                        this.storage.set('ratingDone', true);
+                      },
+                    },
+                  ],
+                })
+                .present();
+            }
+          });
+        }
+      })
+      .catch(() => null);
   }
 
   private async resetRatingCount() {
