@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar> </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header><h1 class="page-title">Tus aromas</h1></ion-list-header>
+    <ion-item *ngFor="let flavour of flavours">
+      <ion-label>
+        <h2>{{flavour.name}}</h2>
+        <span>{{flavour.brand}}</span>
+        -
+        <span>{{flavour.proportion}}%</span>
+      </ion-label>
+      <ion-checkbox checked="true"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>

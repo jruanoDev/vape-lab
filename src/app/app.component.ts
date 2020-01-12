@@ -1,36 +1,36 @@
-import { NavController, Platform, ViewController } from 'ionic-angular';
+import { NavController, Platform, ViewController } from "ionic-angular";
 
-import { Component, ViewChild, enableProdMode } from '@angular/core';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import { Component, ViewChild, enableProdMode } from "@angular/core";
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { StatusBar } from "@ionic-native/status-bar";
 
-import { environment } from '../config';
-import { HomePage } from '../pages/home/home';
+import { environment } from "../config";
+import { HomePage } from "../pages/home/home";
 
 // Checkeamos si estamos en estado de producción
 if (environment.production) enableProdMode();
 
 @Component({
-  templateUrl: 'app.html',
+  templateUrl: "app.html"
 })
 export class MyApp {
-  @ViewChild('content') nav: NavController;
+  @ViewChild("content") nav: NavController;
   rootPage: any = HomePage;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen,
+    splashScreen: SplashScreen
   ) {
     platform.ready().then(() => {
       statusBar.styleDefault();
-      statusBar.backgroundColorByHexString('#efefef');
+      statusBar.backgroundColorByHexString("#efefef");
       splashScreen.hide();
 
       this.nav.viewDidEnter.subscribe((view: ViewController) => {
         let viewName = view.id;
 
-        if (view.instance instanceof HomePage) viewName = 'HomePage';
+        if (view.instance instanceof HomePage) viewName = "HomePage";
 
         this.changeMenuSelection(viewName);
       });
@@ -41,10 +41,10 @@ export class MyApp {
     let activePageName = this.nav.getActive().id;
 
     if (this.nav.getActive().instance instanceof HomePage)
-      activePageName = 'HomePage';
+      activePageName = "HomePage";
 
     if (activePageName != page) {
-      if (page == 'HomePage') {
+      if (page == "HomePage") {
         this.nav.push(HomePage, null);
       } else {
         this.nav.push(page, null).then(() => {
@@ -59,19 +59,19 @@ export class MyApp {
     let previousPageName = previousPage.id;
 
     if (previousPage.instance instanceof HomePage)
-      previousPageName = 'HomePage';
+      previousPageName = "HomePage";
 
-    if (this.nav.getPrevious() != null && previousPageName != 'HomePage')
+    if (this.nav.getPrevious() != null && previousPageName != "HomePage")
       previousPage.dismiss();
   }
 
   changeMenuSelection(viewName) {
-    let menuElements = document.querySelectorAll('.menu-button');
+    let menuElements = document.querySelectorAll(".menu-button");
 
     [].forEach.call(menuElements, function(element) {
-      element.classList.remove('active');
-      if (element.getAttribute('data-page') == viewName)
-        element.classList.add('active');
+      element.classList.remove("active");
+      if (element.getAttribute("data-page") == viewName)
+        element.classList.add("active");
     });
   }
 }
