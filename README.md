@@ -55,4 +55,4 @@ La aplicación almacena los datos en el almacenamiento del dispositivo mediante 
 
 ## Dependencias
 
-Este proyecto está usando actualmente la versión **3 de Ionic*
+Este proyecto está usando actualmente la versión **3 de Ionic**
