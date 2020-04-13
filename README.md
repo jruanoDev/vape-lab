@@ -1,6 +1,13 @@
 # Vape Lab
 
-### Aplicación para realizar cálculos de alquimia para líquidos de vapeo.
+### Aplicación para calcular proporciones en líquidos para vapear
+
+## Motivación
+Este proyecto se inció para ayudarme a mí mismo a realizar los cálculos de las proporciones usadas en los líquidos para vapear.
+
+Los líquidos para vapear que se pueden preparar en casa se componen de varios ingredientes, no siendo estos siempre los mismos ni las mismas cantidades, ésto depende de los gustos de cada persona, o de la cantidad de nicotina que quiera incluir en el líquido.
+
+Esta aplicación ayuda a estas personas a calcular correctamente todas las cantidades que necesitan ser mezcladas para obtener un líquido final correcto.
 
 ## Iniciar el proyecto
 
@@ -12,7 +19,7 @@ npm install
 ionic serve --lab
 ```
 
-Esto instalará todas las dependencias necesarias e iniciará el proyecto en la URL especificada.
+Esto instalará todas las dependencias necesarias e iniciará el proyecto en la URL de desarrollo (normalmente localhost).
 
 ## Ejecución en dispositivo móvil
 
@@ -44,10 +51,8 @@ npm run devapp
 
 ## Almacenamiento
 
-La aplicación almacena los datos en la memoria del dispositivo mediante el plugin **storage** de Ionic, para poder ver los valores almacenados deberemos hacerlo con el Inspector de nuestro navegador.
+La aplicación almacena los datos en el almacenamiento del dispositivo mediante el plugin **storage** de Ionic, para poder ver los valores almacenados deberemos hacerlo con el Inspector de nuestro navegador.
 
 ## Dependencias
 
-Este proyecto está usando **Ionic 3** y merece la pena revisar bien si se va a actualizar esta versión, ya que puede que algunos plugins o el enrutado no funcionen en nuevas versiones debido a los cambios hechos por el equipo de Ionic.
-
-La versión de Angular usada en esta versión de Ionic es **Angular 5**.
+Este proyecto está usando actualmente la versión **3 de Ionic*
